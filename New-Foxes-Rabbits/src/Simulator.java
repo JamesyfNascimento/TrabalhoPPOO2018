@@ -3,6 +3,7 @@ import java.util.List;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.awt.Color;
+import java.util.ConcurrentModificationException;
 
 /**
  * A simple predator-prey simulator, based on a rectangular field
@@ -19,10 +20,11 @@ public class Simulator
     // The default depth of the grid.
     private static final int DEFAULT_DEPTH = 100;
     // The probability that a fox will be created in any given grid position.
-    private static final double FOX_CREATION_PROBABILITY = 0.02;
+    private static final double FOX_CREATION_PROBABILITY = 0.01;
     // The probability that a rabbit will be created in any given grid position.
-    private static final double RABBIT_CREATION_PROBABILITY = 0.08;    
+    private static final double RABBIT_CREATION_PROBABILITY = 0.03;    
 
+     private List<Actor> actors;
     // List of animals in the field.
     private List<Animal> animals;
     // The current state of the field.
@@ -54,6 +56,7 @@ public class Simulator
             width = DEFAULT_WIDTH;
         }
         
+        actors = new ArrayList<Actor>();
         animals = new ArrayList<Animal>();
         field = new Field(depth, width);
 
@@ -61,6 +64,7 @@ public class Simulator
         view = new SimulatorView(depth, width);
         view.setColor(Coelho.class, Color.orange);
         view.setColor(Raposa.class, Color.blue);
+        view.setColor(Hunter.class, Color.red);
         
         // Setup a valid starting point.
         reset();
@@ -96,29 +100,47 @@ public class Simulator
     {
         step++;
 
-        // Provide space for newborn animals.
-        List<Animal> newAnimals = new ArrayList<Animal>();        
-        // Let all rabbits act.
-        for(Iterator<Animal> it = animals.iterator(); it.hasNext(); ) {
-            Animal animal = it.next();
-            animal.act(newAnimals);
-            if(! animal.isAlive()) {
-                it.remove();
-            }
-        }
-               
+        // Provide space for newborn actors.
+        List<Actor> newActors = new ArrayList<Actor>();
+        
+        // avoid being being interrupted
+        try{
+	        	if (actors != null)
+	        	{
+				    // Let all actors act.
+				    for(Iterator<Actor> it = actors.iterator(); it.hasNext();) {
+				        Actor actor = it.next();
+				        actor.act(newActors);
+				        if (actor instanceof Animal)		//	check if actor is an animal
+				        {
+				        	Animal animal = (Animal) actor;
+				        	if(! animal.isAlive()) {
+				                it.remove();
+				            }
+				        }
+				        
+				    }
+	        	}
+        	}
+    		catch (ConcurrentModificationException e)
+    		{	
+    			simulateOneStep();
+        	}
         // Add the newly born foxes and rabbits to the main lists.
-        animals.addAll(newAnimals);
+        actors.addAll(newActors);
 
         view.showStatus(step, field);
     }
+    
         
     /**
      * Reset the simulation to a starting position.
      */
     public void reset()
     {
+            
         step = 0;
+        actors.clear();
         animals.clear();
         populate();
         
@@ -145,7 +167,11 @@ public class Simulator
                     Coelho rabbit = new Coelho(field, location);
                     animals.add(rabbit);
                 }
-                // else leave the location empty.
+                else if (rand.nextDouble() <= 0.02) {
+                    Location location = new Location(row, col);
+                    Hunter hunter = new Hunter(field, location);
+                    actors.add(hunter);
+                }
             }
         }
     }

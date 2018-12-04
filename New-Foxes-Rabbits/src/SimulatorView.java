@@ -31,6 +31,12 @@ public class SimulatorView extends JFrame
     private Map<Class, Color> colors;
     // A statistics object computing and storing simulation information
     private FieldStats stats;
+    Container contents;
+    /* Mecanismo auxiliar para a GridBagLayout. Restrições adicionados 
+        aos componetes antes de serem adicionados ao layout. (posicionamento, largura, alinhamento) */
+    private GridBagConstraints gbc;
+    private GridBagLayout gbl;
+    private JPanel painel;
 
     /**
      * Create a view of the given width and height.
@@ -45,17 +51,37 @@ public class SimulatorView extends JFrame
         setTitle("Fox and Rabbit Simulation");
         stepLabel = new JLabel(STEP_PREFIX, JLabel.CENTER);
         population = new JLabel(POPULATION_PREFIX, JLabel.CENTER);
-        
+        contents = getContentPane();
         setLocation(100, 50);
         
         fieldView = new FieldView(height, width);
+        painel = new JPanel(new GridLayout(2, 1));
+        gbc = new GridBagConstraints();
+        gbl = new GridBagLayout(); // Objeto da classe que definirá o Layout.
+        setLayout(gbl);
+        painel.add(stepLabel);
+        painel.add(population);
+        
+        adicionarComponente(fieldView, GridBagConstraints.LINE_START, GridBagConstraints.HORIZONTAL, 0, 0, 3, 1);
+        adicionarComponente(painel, GridBagConstraints.LINE_END, GridBagConstraints.HORIZONTAL, 2, 4, 1, 1);
 
-        Container contents = getContentPane();
-        contents.add(stepLabel, BorderLayout.NORTH);
-        contents.add(fieldView, BorderLayout.CENTER);
-        contents.add(population, BorderLayout.SOUTH);
         pack();
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setVisible(true);
+        
+    }
+    
+    private void adicionarComponente(Component comp, int anchor, int fill, int linha, int coluna, int larg, int alt) {
+        
+        gbc.anchor = anchor; // posicionamento do componente na tela (esquerda, direita, centralizado, etc)
+        gbc.fill = fill; // define se o tamanho do componente será expandido ou não
+        gbc.gridx = linha; // coluna do grid onde o componente será inserido
+        gbc.gridy = coluna; // linha do grid onde o componente será inserido        
+        gbc.gridwidth = larg; // quantidade de colunas do grid que o componente irá ocupar
+        gbc.gridheight = alt; // quantidade de linhas do grid que o componente irá ocupar
+        gbc.insets = new Insets(3, 3, 3, 3); // espaçamento (em pixels) entre os componentes da tela
+        gbl.setConstraints(comp, gbc); // adiciona o componente "comp" ao layout com as restrições previamente especificadas
+        contents.add(comp);
     }
     
     /**
