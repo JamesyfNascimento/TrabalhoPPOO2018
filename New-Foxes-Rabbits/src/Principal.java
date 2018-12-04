@@ -14,7 +14,7 @@ import java.util.Random;
 public class Principal {
     
     public static void main(String[] args) {
-       Simulator simulator = new Simulator(100, 150);
+       Simulator simulator = new Simulator(150, 150);
        //simulator.runLongSimulation();
        simulator.simulate(90);
        simulator.simulateOneStep();

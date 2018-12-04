@@ -58,28 +58,33 @@ public class SimulatorView extends JFrame
         painel = new JPanel(new GridLayout(2, 1));
         gbc = new GridBagConstraints();
         gbl = new GridBagLayout(); // Objeto da classe que definirá o Layout.
-        setLayout(gbl);
+        //setLayout(gbl);
+        //setLayout(new BorderLayout());
+        setLayout(new FlowLayout());
         painel.add(stepLabel);
         painel.add(population);
-        
-        adicionarComponente(fieldView, GridBagConstraints.LINE_START, GridBagConstraints.HORIZONTAL, 0, 0, 3, 1);
-        adicionarComponente(painel, GridBagConstraints.LINE_END, GridBagConstraints.HORIZONTAL, 2, 4, 1, 1);
-
+        //contents.add(fieldView, BorderLayout.WEST);
+        //contents.add(painel, BorderLayout.EAST);
+        //adicionarComponente(fieldView, GridBagConstraints.CENTER, GridBagConstraints.BOTH,2.0, 2.0, 0, 0, 2, 1);
+        //adicionarComponente(painel, GridBagConstraints.CENTER, GridBagConstraints.BOTH,0.5, 0.5, 1, 3, 1, 1);
+        contents.add(fieldView);
+        contents.add(painel);
         pack();
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setVisible(true);
         
     }
     
-    private void adicionarComponente(Component comp, int anchor, int fill, int linha, int coluna, int larg, int alt) {
-        
+    private void adicionarComponente(Component comp, int anchor, int fill, double pesoX, double pesoY, int linha, int coluna, int larg, int alt) {
+        gbc.weightx = pesoX;
+        gbc.weighty = pesoY;
         gbc.anchor = anchor; // posicionamento do componente na tela (esquerda, direita, centralizado, etc)
         gbc.fill = fill; // define se o tamanho do componente será expandido ou não
         gbc.gridx = linha; // coluna do grid onde o componente será inserido
         gbc.gridy = coluna; // linha do grid onde o componente será inserido        
         gbc.gridwidth = larg; // quantidade de colunas do grid que o componente irá ocupar
         gbc.gridheight = alt; // quantidade de linhas do grid que o componente irá ocupar
-        gbc.insets = new Insets(3, 3, 3, 3); // espaçamento (em pixels) entre os componentes da tela
+        gbc.insets = new Insets(1, 1, 1, 1); // espaçamento (em pixels) entre os componentes da tela
         gbl.setConstraints(comp, gbc); // adiciona o componente "comp" ao layout com as restrições previamente especificadas
         contents.add(comp);
     }
