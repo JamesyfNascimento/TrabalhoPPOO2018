@@ -11,7 +11,6 @@ import java.util.HashMap;
  */
 public class FieldStats
 {
-
     static int rabbitCount;
     static int foxCount;
     // Counters for each type of entity (fox, rabbit, etc.) in the simulation.
@@ -108,6 +107,10 @@ public class FieldStats
         return nonZero > 1;
     }
     
+    public HashMap<Class, Counter> getPopulation() {
+        return counters;
+    }
+    
     /**
      * Generate counts of the number of foxes and rabbits.
      * These are not kept up to date as foxes and rabbits
@@ -127,5 +130,9 @@ public class FieldStats
             }
         }
         countsValid = true;
+    }
+    
+    public boolean getCountsValid() {
+        return countsValid;
     }
 }

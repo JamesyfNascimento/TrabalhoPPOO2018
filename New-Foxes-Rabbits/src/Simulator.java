@@ -3,36 +3,39 @@ import java.util.List;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.awt.Color;
-import java.util.ConcurrentModificationException;
+
 
 /**
  * A simple predator-prey simulator, based on a rectangular field
  * containing rabbits and foxes.
- * 
- * @author David J. Barnes and Michael Kolling
- * @version 2008.03.30
  */
 public class Simulator
 {
     // Constants representing configuration information for the simulation.
     // The default width for the grid.
-    private static final int DEFAULT_WIDTH = 200;
+    private static final int DEFAULT_WIDTH = 100;
     // The default depth of the grid.
-    private static final int DEFAULT_DEPTH = 100;
+    private static final int DEFAULT_DEPTH = 80;
+    // The probability that a bear will be created in any given grid position.    
+    private static double BEAR_CREATION_PROBABILITY = 0.01;
     // The probability that a fox will be created in any given grid position.
-    private static final double FOX_CREATION_PROBABILITY = 0.01;
+    private static double FOX_CREATION_PROBABILITY = 0.02;
     // The probability that a rabbit will be created in any given grid position.
-    private static final double RABBIT_CREATION_PROBABILITY = 0.03;    
-
-     private List<Actor> actors;
-    // List of animals in the field.
-    private List<Animal> animals;
+    private static double RABBIT_CREATION_PROBABILITY = 0.08;    
+    // The probability that a hunter will be created in any given grid position.
+    private static double HUNTER_CREATION_PROBABILITY = 0.002;
+    // The probability that grass will be created in any given grid position.
+    private static double GRASS_CREATION_PROBABILITY = 1;
+    
+    // List of Actors in the field.
+    private List<Actor> actors;
     // The current state of the field.
     private Field field;
     // The current step of the simulation.
-    private int step;
+    private int step = 0;
     // A graphical view of the simulation.
     private SimulatorView view;
+
     
     /**
      * Construct a simulation field with default size.
@@ -57,38 +60,17 @@ public class Simulator
         }
         
         actors = new ArrayList<Actor>();
-        animals = new ArrayList<Animal>();
         field = new Field(depth, width);
 
         // Create a view of the state of each location in the field.
         view = new SimulatorView(depth, width);
-        view.setColor(Coelho.class, Color.orange);
-        view.setColor(Raposa.class, Color.blue);
-        view.setColor(Hunter.class, Color.red);
-        
+        view.setColor(Coelho.class, Color.ORANGE);
+        view.setColor(Raposa.class, Color.BLUE);
+        view.setColor(Bear.class, Color.MAGENTA);
+        view.setColor(Hunter.class, Color.BLACK);
+        view.setColor(Grass.class, Color.GREEN);
         // Setup a valid starting point.
         reset();
-    }
-    
-    /**
-     * Run the simulation from its current state for a reasonably long period,
-     * e.g. 500 steps.
-     */
-    public void runLongSimulation()
-    {
-        simulate(500);
-    }
-    
-    /**
-     * Run the simulation from its current state for the given number of steps.
-     * Stop before the given number of steps if it ceases to be viable.
-     * @param numSteps The number of steps to run for.
-     */
-    public void simulate(int numSteps)
-    {
-        for(int step = 1; step <= numSteps && view.isViable(field); step++) {
-            simulateOneStep();
-        }
     }
     
     /**
@@ -103,50 +85,73 @@ public class Simulator
         // Provide space for newborn actors.
         List<Actor> newActors = new ArrayList<Actor>();
         
-        // avoid being being interrupted
-        try{
-	        	if (actors != null)
-	        	{
-				    // Let all actors act.
-				    for(Iterator<Actor> it = actors.iterator(); it.hasNext();) {
-				        Actor actor = it.next();
-				        actor.act(newActors);
-				        if (actor instanceof Animal)		//	check if actor is an animal
-				        {
-				        	Animal animal = (Animal) actor;
-				        	if(! animal.isAlive()) {
-				                it.remove();
-				            }
-				        }
-				        
-				    }
-	        	}
-        	}
-    		catch (ConcurrentModificationException e)
-    		{	
-    			simulateOneStep();
-        	}
+        // Let all actors act.
+        for(Iterator<Actor> it = actors.iterator(); it.hasNext();) {
+            Actor actor = it.next();
+            actor.act(newActors);
+            if (actor instanceof Animal)		//	check if actor is an animal
+            {
+                    Animal animal = (Animal) actor;
+                    if(! animal.isAlive()) {
+                    it.remove();
+                }
+            }
+            else if (actor instanceof Plant)
+            {
+                    Plant plant = (Plant) actor;
+                    if(! plant.isAlive()) {
+                    it.remove();
+                }
+            }
+        }
+				    
         // Add the newly born foxes and rabbits to the main lists.
         actors.addAll(newActors);
 
         view.showStatus(step, field);
     }
     
-        
     /**
      * Reset the simulation to a starting position.
      */
     public void reset()
     {
-            
+        view.getThreadRunner().stop();			
         step = 0;
         actors.clear();
-        animals.clear();
         populate();
         
         // Show the starting state in the view.
         view.showStatus(step, field);
     }
+    
+    /**
+     * Getter voor view
+     * @return view van het type SimulatorView
+     */
+    public SimulatorView getSimulatorView()
+    {
+    	return view;
+    }
+    
+    /**
+     * Getter voor field
+     * @return field van het type Field
+     */
+    public Field getField()
+    {
+    	return field;
+    }
+    
+    /**
+     * getter voor step
+     * @return steps aantal step
+     */
+    public int getStep()
+    {
+    	return step;
+    }
+    
     
     /**
      * Randomly populate the field with foxes and rabbits.
@@ -159,20 +164,81 @@ public class Simulator
             for(int col = 0; col < field.getWidth(); col++) {
                 if(rand.nextDouble() <= FOX_CREATION_PROBABILITY) {
                     Location location = new Location(row, col);
-                    Raposa fox = new Raposa(field, location);
-                    animals.add(fox);
+                    Raposa fox = new Raposa(true, field, location);
+                    actors.add(fox);
                 }
                 else if(rand.nextDouble() <= RABBIT_CREATION_PROBABILITY) {
                     Location location = new Location(row, col);
-                    Coelho rabbit = new Coelho(field, location);
-                    animals.add(rabbit);
+                    Coelho rabbit = new Coelho(true, field, location);
+                    actors.add(rabbit);
                 }
-                else if (rand.nextDouble() <= 0.02) {
+                else if(rand.nextDouble() <= BEAR_CREATION_PROBABILITY) {
+                    Location location = new Location(row, col);
+                    Bear bear = new Bear(true, field, location);
+                    actors.add(bear);
+                }
+                else if(rand.nextDouble() <= HUNTER_CREATION_PROBABILITY) {
                     Location location = new Location(row, col);
                     Hunter hunter = new Hunter(field, location);
                     actors.add(hunter);
                 }
+                else if(rand.nextDouble() <= GRASS_CREATION_PROBABILITY) {
+                    Location location = new Location(row, col);
+                    Grass grass = new Grass(true, field, location);
+                    actors.add(grass);
+                }
+                // else leave the location empty.
             }
         }
     }
+    
+    /**
+     * setter voor BEAR_CREATION_PROBABILITY
+     * @param BEAR_CREATION_PROBABILITY
+     */
+    public static void setBearCreationProbability(double BEAR_CREATION_PROBABILITY)
+    {
+    	if (BEAR_CREATION_PROBABILITY >= 0)
+    		Simulator.BEAR_CREATION_PROBABILITY = BEAR_CREATION_PROBABILITY;
+    }
+    
+    /**
+     * setter voor FOX_CREATION_PROBABILITY
+     * @param FOX_CREATION_PROBABILITY
+     */
+    public static void setFoxCreationProbability(double FOX_CREATION_PROBABILITY)
+    {
+    	if (FOX_CREATION_PROBABILITY >= 0)
+    		Simulator.FOX_CREATION_PROBABILITY = FOX_CREATION_PROBABILITY;
+    }
+    
+    /**
+     * setter voor RABBIT_CREATION_PROBABILITY
+     * @param RABBIT_CREATION_PROBABILITY
+     */
+    public static void setRabbitCreationProbability(double RABBIT_CREATION_PROBABILITY)
+    {
+    	if (RABBIT_CREATION_PROBABILITY >= 0)
+    		Simulator.RABBIT_CREATION_PROBABILITY = RABBIT_CREATION_PROBABILITY;
+    }
+    
+    /**
+     * setter voor HUNTER_CREATION_PROBABILITY
+     * @param HUNTER_CREATION_PROBABILITY
+     */
+    public static void setHunterCreationProbability(double HUNTER_CREATION_PROBABILITY)
+    {
+    	if (HUNTER_CREATION_PROBABILITY >= 0)
+    		Simulator.HUNTER_CREATION_PROBABILITY = HUNTER_CREATION_PROBABILITY;
+    }
+    
+    /**
+     * setter voor GRASS_CREATION_PROBABILITY
+     * @param GRASS_CREATION_PROBABILITY
+     */
+    public static void setGrassCreationProbability(double GRASS_CREATION_PROBABILITY)
+    {
+    	if (GRASS_CREATION_PROBABILITY >= 0)
+    		Simulator.GRASS_CREATION_PROBABILITY = GRASS_CREATION_PROBABILITY;
+    }    
 }
