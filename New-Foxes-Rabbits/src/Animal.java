@@ -19,8 +19,6 @@ public abstract class Animal implements Personagem {
     // Um gerador de numeros aleatorios compartilhados para controlar a reprodução.
     private static final Random rand = Randomico.getRandom();
 	
-	
-
     /**
      * Construtor que recebe os parametros do campo do animal e a localizacao e 
      * cria o animal na localizacao determinada por padrao vivo (obvio).
@@ -33,8 +31,10 @@ public abstract class Animal implements Personagem {
         setLocalizacao(localizacao);
     }
 
-    Falta
     @Override
+    /**
+     * Método para determinar a ação do personagem
+     */
     public abstract void act(List<Personagem> novosAnimais);
 
     /**
@@ -59,7 +59,7 @@ public abstract class Animal implements Personagem {
     }
 
     /**
-     * Incrementa a idade do animal e caso este atinja a idade maxima e morto.
+     * Incrementa a idade do animal e caso este atinja a idade maxima é morto.
      */
     protected void envelhecer() {
         setIdade(getIdade() + 1);
@@ -68,12 +68,15 @@ public abstract class Animal implements Personagem {
         }
     }
 
-    Falta
+    /**
+     * Método para definir idade maxima
+     * @return idade maxima 
+     */
     protected abstract int idadeMaxima();
 
     /**
      * Retorna a localizacao do animal.
-     * @return true se o animal estiver vivo
+     * @return localização
      */
     protected Localizacao getLocalizacao() {
         return localizacao;
@@ -99,8 +102,11 @@ public abstract class Animal implements Personagem {
     protected Campo getCampo() {
         return campo;
     }
-
-    Falta
+    
+    /**
+     * Método para determinar o nacimentos dos agentes que estão no campo
+     * @return numero de nascimentos
+     */
     protected int procriar() {
         int nascimentos = 0;
         if (podeProcriar() && getRandom().nextDouble() <= getProbabilidadeProcriar()) {
@@ -109,7 +115,9 @@ public abstract class Animal implements Personagem {
         return nascimentos;
     }
 
-    Falta
+    /**
+     * Alguns animais podem pocriar outros não
+    */
     protected abstract boolean podeProcriar();
 
     /**
@@ -152,9 +160,15 @@ public abstract class Animal implements Personagem {
         return rand;
     }
 
-    Falta
+    /**
+     * Retorno do número máximo de nascimentos
+     * @return 
+     */
     protected abstract int getNumMaxNascimento();
 
-    Falta
+    /**
+     * Retorna a probabilidade de procriar
+     * @return 
+     */
     protected abstract double getProbabilidadeProcriar();
 }
