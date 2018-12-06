@@ -22,6 +22,7 @@ public class Grama extends Planta {
   }
 
   
+  @Override
   public void act(List<Personagem> novasGramas) {
     envenhecer();
     if (ehVivo()) {
@@ -53,6 +54,7 @@ public class Grama extends Planta {
   }
 
  
+  @Override
   protected boolean podeNascer() {
     return getIdade() >= getIdadeNascer();
   }
@@ -95,16 +97,19 @@ public class Grama extends Planta {
   }
 
   
+  @Override
   protected int getIdadeMaxima() {
     return IDADE_MAXIMA;
   }
 
   
+  @Override
   protected int getMaxNascimento() {
     return MAX_NASCIMENTOS;
   }
 
   
+  @Override
   protected double getprobabilidadeNascer() {
     return PROBABILIDADE_NASCIMENTOS;
   }

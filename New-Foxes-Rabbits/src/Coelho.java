@@ -30,6 +30,7 @@ public class Coelho extends Animal
     }
       
     
+    @Override
     public void act(List<Personagem> novosCoelhos)
     {
         envelhecer();
@@ -89,32 +90,37 @@ public class Coelho extends Animal
     }
     
     
+    @Override
     protected boolean podeProcriar()
     {
-        return getIdade() >= getBreedingAge();
+        return getIdade() >= getIdadeReproducao();
     }
     
     /**
      * Getter om BREEDING_AGE op te halen
+     * @return 
      */
-    protected int getBreedingAge()
+    protected int getIdadeReproducao()
     {
     	return IDADE_REPRODUCAO;
     }
     
     
+    @Override
     protected int idadeMaxima()
     {
     	return IDADE_MAXIMA;
     }
     
     
+    @Override
     protected double getProbabilidadeProcriar()
     {
     	return PROBABILIDADE_REPRODUCAO;
     }
     
     
+    @Override
     protected int getNumMaxNascimento()
     {
     	return MAX_NASCIMENTO;
@@ -122,26 +128,32 @@ public class Coelho extends Animal
     
 
     
-    public static void setBreedingAge(int newBREEDING_AGE)
+    public static void setIdadeReproducao(int novaIdadeReproducao)
     {
-    	IDADE_REPRODUCAO = newBREEDING_AGE;
+    	IDADE_REPRODUCAO = novaIdadeReproducao;
+    }
+    
+    /**
+     *
+     * @param novaIdade
+     */
+    public static void setIdadeMaxima(int novaIdade)
+    {
+    	IDADE_MAXIMA = novaIdade;
+    }
+    
+    /**
+     *
+     * @param novaProbReproucao
+     */
+    public static void serProbReproducao(double novaProbReproucao)
+    {
+    	PROBABILIDADE_REPRODUCAO = novaProbReproucao;
     }
     
     
-    public static void setMaxAge(int newMAX_AGE)
+    public static void setMaxNascimento(int novaMaxNascimento)
     {
-    	IDADE_MAXIMA = newMAX_AGE;
-    }
-    
-   
-    public static void setBreedingProbability(double newBREEDING_PROBABILITY)
-    {
-    	PROBABILIDADE_REPRODUCAO = newBREEDING_PROBABILITY;
-    }
-    
-    
-    public static void setMaxLitterSize(int newMAX_LITTER_SIZE)
-    {
-    	MAX_NASCIMENTO = newMAX_LITTER_SIZE;
+    	MAX_NASCIMENTO = novaMaxNascimento;
     }
 }

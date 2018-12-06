@@ -27,9 +27,11 @@ public abstract class Planta implements Personagem {
   }
 
  
+  @Override
   public abstract void act(List<Personagem> novasPlantas);
 
   
+  @Override
   public boolean ehVivo() {
     return vivo;
   }
@@ -60,6 +62,7 @@ public abstract class Planta implements Personagem {
   }
 
  
+  @Override
   public void setLocalizacao(Localizacao newLocation) {
     if (localizacao != null) {
       campo.limpar(localizacao);

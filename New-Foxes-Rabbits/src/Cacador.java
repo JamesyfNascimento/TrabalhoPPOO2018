@@ -19,6 +19,7 @@ public class Cacador implements Personagem
     }
 
    
+    @Override
     public void act(List<Personagem> novosCacadores)
     {
     	// Move towards a source of food if found.
@@ -86,6 +87,7 @@ public class Cacador implements Personagem
     }
     
     
+    @Override
     public void setLocalizacao(Localizacao novaLocalizacao)
     {
         if(localizacao != null) {
