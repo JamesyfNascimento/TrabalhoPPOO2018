@@ -3,7 +3,7 @@ import java.util.List;
 
 /**
  * Interface para criar novos agentes que não são animais no campo no campo
- * @author isabela
+ * @author Anderson, Isabela, James
  */
 public interface Personagem 
 {
