@@ -1,7 +1,5 @@
 
-/**
- * Allow the animation to be shown.
- */
+
 public class ThreadRunner implements Runnable {
 
   private int numSteps = 0;
@@ -12,9 +10,6 @@ public class ThreadRunner implements Runnable {
 
   }
 
-  /**
-   * Run the simulation from its current state for a reasonably long period
-   */
   public void startRun(int numSteps) {
     if (numSteps == 0) {
       this.numSteps = 1;
@@ -33,28 +28,21 @@ public class ThreadRunner implements Runnable {
     }
   }
 
-  /**
-   * Pauze de animatie
-   */
+  
   public void stop() {
     numSteps = 0;
     threadRun = false;
     infinite = false;
   }
 
-  /**
-   * Deze methode wordt alleen uitgevoerd als je de methode .start() gebruikt van
-   * de klasse Thread. Zonder de klasse (thread), wordt deze methode niet juist
-   * uitgevoerd. De methode zorgt ervoor dat de thread door het aantal numSteps
-   * heen loopt.
-   */
+  
   @Override
   public void run() {
     threadRun = true;
-    Simulator simulator = Principal.getSimulator();
+    Simulador simulator = Principal.getSimulador();
 
-    while (threadRun && numSteps > 0 && simulator.getSimulatorView().isViable(simulator.getField())) {
-      Principal.getSimulator().simulateOneStep();
+    while (threadRun && numSteps > 0 && simulator.getSimuladorTela().isViable(simulator.getCampo())) {
+      Principal.getSimulador().umPasso();
       numSteps--;
       while (infinite && numSteps == 0) {
         numSteps++;

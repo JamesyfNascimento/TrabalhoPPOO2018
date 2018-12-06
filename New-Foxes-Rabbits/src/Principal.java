@@ -1,51 +1,26 @@
 
 import java.util.Random;
 
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
-/**
- *
- * @author isabela
- */
 public class Principal {
 
-    private static Simulator simulator;
+    private static Simulador simulador;
 
-    /**
-     * Main methode
-     * 
-     * @throws Exception
-     */
+    
     public static void main(String[] args) throws Exception {
 
-        // SplashScreen splash = new SplashScreen(3000);
-        // Sound startupSound = new Sound("sounds/test.wav");
-        // splash.showSplash();
 
-        setSimulator(new Simulator()); 
+        setSimulador(new Simulador()); 
         
     }
 
-    /**
-     * returns the simulator
-     * 
-     * @return simulator
-     */
-    public static Simulator getSimulator() {
-        return simulator;
+   
+    public static Simulador getSimulador() {
+        return simulador;
     }
 
-    /**
-     * sets a new simulator
-     * 
-     * @param simulator
-     */
-    public static void setSimulator(Simulator simulator) {
-        Principal.simulator = simulator;
+    
+    public static void setSimulador(Simulador simulador) {
+        Principal.simulador = simulador;
     }
 
 }
