@@ -1,15 +1,21 @@
-
+/**
+ * Classe que cuida dos passos da iteração
+ * @author Anderson, Isabela, James
+ */
 
 public class ThreadRunner implements Runnable {
-
-  private int numSteps = 0;
-  private boolean infinite = false;
-  private boolean threadRun;
+  
+    private int numSteps = 0;
+    private boolean infinite = false;
+    private boolean threadRun;
 
   public ThreadRunner() {
 
   }
-
+  /**
+   * Número de passos da execução
+   * @param numSteps 
+   */
   public void startRun(int numSteps) {
     if (numSteps == 0) {
       this.numSteps = 1;
@@ -28,14 +34,19 @@ public class ThreadRunner implements Runnable {
     }
   }
 
-  
+  /**
+   * Para execução
+   */
   public void stop() {
     numSteps = 0;
     threadRun = false;
     infinite = false;
   }
 
-  
+  /**
+   * Executa o simulador, determina o tempo entre a execução de um passo para 
+   * outro
+   */
   @Override
   public void run() {
     threadRun = true;
@@ -49,8 +60,9 @@ public class ThreadRunner implements Runnable {
       }
 
       try {
-        Thread.sleep(0);
-      } catch (Exception e) {
+        //Dormir 1 segundo
+        Thread.sleep(1000);
+      } catch (InterruptedException e) {
         System.out.println("InterruptedException");
       }
     }
