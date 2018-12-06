@@ -1,19 +1,25 @@
 import java.util.Random;
 
-
+/**
+ * Classe para gerar os valores aleatórios usados
+ * @author Anderson, Isabela, James
+ */
 public class Randomico {
-    // The default seed for control of randomization.
+    // Um valor semente padrão.
     private static final int SEED = 1111;
-    // A shared Random object, if required.
+    // Objeto Random compartilhado.
     private static final Random rand = new Random(SEED);
-    // Determine whether a shared random generator is to be provided.
+    // Determinda se um gerador aleatório compartilhado deve ser gerado
     private static final boolean useShared = true;
 
    
     public Randomico() {
     }
 
-    
+    /**
+     * Criar o gerador aleatório
+     * @return new Random()
+     */
     public static Random getRandom() {
         if (useShared) {
             return rand;
@@ -22,7 +28,9 @@ public class Randomico {
         }
     }
 
-   
+   /**
+    * Reseta o gerador
+    */
     public static void reset() {
         if (useShared) {
             rand.setSeed(SEED);
