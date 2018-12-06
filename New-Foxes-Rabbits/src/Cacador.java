@@ -1,16 +1,25 @@
 import java.util.List;
 import java.util.Iterator;
 
+/* Uma classe que representa as características compartilhadas dos caçadores.
+ * Um modelo simples de um caçador.
+ * Caçadores se movem e disparam.
+*/
 public class Cacador implements Personagem
 {
-    // The hunter's field.
+    // O campo do caçador.
     private Campo campo;
-    // The hunter's position in the field.
+    // A posicao do caçador no campo.
     private Localizacao localizacao;
-    
+    // Se o caçador esta vivo ou nao.
     private boolean ehVivo;
     
-    
+    /**
+      * Construtor que recebe os parametros do campo do cacador e a sua 
+      * localizacao dentro do campo.
+      * @param campo O campo atualmente ocupado.
+      * @param novaLocalizacao A localização dentro do campo.
+     */
     public Cacador(Campo campo, Localizacao novaLocalizacao)
     {
         this.campo = campo;
@@ -18,41 +27,43 @@ public class Cacador implements Personagem
         ehVivo = true;
     }
 
-   
+    Falta
     public void act(List<Personagem> novosCacadores)
     {
-    	// Move towards a source of food if found.
+    	// Mova-se em direcao a uma fonte de comida, se encontrada.
         Localizacao novaLocalizacao = encontrarAlvo();
         if(novaLocalizacao == null) { 
-            // No food found - try to move to a free location.
+            // Nenhum alimento encontrado - tente mover para um local livre.
             novaLocalizacao = getCampo().LocalizacaoAdjLivre(getLocalizacao());
         }
-        // See if it was possible to move.
+        // Veja se foi possivel se mover.
         if(novaLocalizacao != null) {
             setLocalizacao(novaLocalizacao);
         }else{
             ehVivo = false;
         }
-
     }
-
-
-   
+    
+    /**
+      * Procurar por um animal adjacente ao local atual.
+      * Apenas o primeiro animal vivo e o alvo.
+      * @return onde Localizacao do animal encontrado, ou nulo.
+     */
     private Localizacao encontrarAlvo()
     {
         Campo campo = getCampo();
         List<Localizacao> adjacente = campo.localizacoesAdjacentes(getLocalizacao());
         Iterator<Localizacao> it = adjacente.iterator();
         while(it.hasNext()) {
-            Localizacao Onde = it.next();
-            Object animal = campo.getPersonagem(Onde);
+            Localizacao onde = it.next();
+            Object animal = campo.getPersonagem(onde);
             if(animal instanceof Coelho) 
             {
                 Coelho coelho = (Coelho) animal;
                 if(coelho.ehVivo()) 
                 { 
                     coelho.matar();
-                    return Onde;
+                    return onde;
                 }
             }
             else if (animal instanceof Raposa)
@@ -61,7 +72,7 @@ public class Cacador implements Personagem
                 if(raposa.ehVivo()) 
                 { 
                     raposa.matar();
-                    return Onde;
+                    return onde;
                 }
             	
             }
@@ -71,21 +82,26 @@ public class Cacador implements Personagem
                 if(urso.ehVivo()) 
                 { 
                     urso.matar();
-                    return Onde;
+                    return onde;
                 }
-            	
             }
         }
         return null;
     }
     
-    
+    /**
+      * Retorna a localização do caçador.
+      * @return localizacao A localizacao do cacador.
+     */
     public Localizacao getLocalizacao()
     {
         return localizacao;
     }
     
-    
+    /**
+      *Coloque o caçador no novo local no campo dado.
+      * @param novaLocalizacao A nova localização do caçador.
+     */
     public void setLocalizacao(Localizacao novaLocalizacao)
     {
         if(localizacao != null) {
@@ -95,12 +111,19 @@ public class Cacador implements Personagem
         campo.lugar(this, novaLocalizacao);
     }
     
-    
+    /**
+      * Retorna o campo do caçador.
+      * @return campo O campo do caçador.
+     */
     public Campo getCampo()
     {
         return campo;
     }   
-
+    
+    /**
+     * Retorna o status de vida do personagem.
+     * @return true se o personagem estiver vivo
+     */
     @Override
     public boolean ehVivo() {
         return ehVivo;
