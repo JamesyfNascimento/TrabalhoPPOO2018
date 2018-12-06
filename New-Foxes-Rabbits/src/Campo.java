@@ -4,24 +4,33 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Random;
 
+/**
+ * Classe da criação do campo onde ficam as diversas espécies
+ * @author Anderson, Isabela, James
+ */
 
 public class Campo {
-    // A random number generator for providing random locations.
+    // gerador aleatória para gerar posições.
     private final Random rand = Randomico.getRandom();
-
-    // The depth and width of the field.
+    // A profundidade o a largura do campo.
     private int altura, largura;
-    // Storage for the animals.
+    // Armazenamento para os animais.
     private Object[][] campo;
 
-    
+    /**
+     * Construtor para criação do campo
+     * @param altura dimensão altura
+     * @param largura dimensão largura
+     */
     public Campo(int altura, int largura) {
         this.altura = altura;
         this.largura = largura;
         campo = new Object[altura][largura];
     }
 
-    
+    /**
+     * Limpa todo o campo e o deixa vazio
+     */
     public void limpar() {
         for (int row = 0; row < altura; row++) {
             for (int col = 0; col < largura; col++) {
@@ -30,38 +39,67 @@ public class Campo {
         }
     }
 
-   
+    /**
+     * Limpar uma determinada localização
+     * @param location 
+     */
     public void limpar(Localizacao location) {
         campo[location.getRow()][location.getCol()] = null;
     }
-
     
+    /**
+     * Retorna a localização no campo 
+     * @param animal - Objeto da classe animal
+     * @param row - linha no campo
+     * @param col - coluna no campo
+     */
     public void lugar(Object animal, int row, int col) {
         lugar(animal, new Localizacao(row, col));
     }
-
+    /**
+     * ????
+     * @param animal
+     * @param localizacao 
+     */
    
     public void lugar(Object animal, Localizacao localizacao) {
         campo[localizacao.getRow()][localizacao.getCol()] = animal;
     }
 
-    
+    /**
+     * Retorna um personagem (exemplo caçador), dada sua localização
+     * @param localizacao
+     * @return 
+     */    
     public Object getPersonagem(Localizacao localizacao) {
         return getPersonagem(localizacao.getRow(), localizacao.getCol());
     }
 
-   
+    /**
+     * Retorna o personagem dada as coordenadas
+     * @param row - linha
+     * @param col - coluna
+     * @return campo[liha][coluna]
+     */   
     public Object getPersonagem(int row, int col) {
         return campo[row][col];
     }
 
-    
+    /**
+     * Retona as localizções adjacentes
+     * @param localizacao
+     * @return adjacente
+     */
     public Localizacao radonLocalizacaoAdj(Localizacao localizacao) {
         List<Localizacao> adjacente = localizacoesAdjacentes(localizacao);
         return adjacente.get(0);
     }
 
-   
+    /**
+     * Retorna lista com os locais adjacentes vazios
+     * @param localizacao
+     * @return livre
+     */
     public List<Localizacao> getLocalizacoesAdjLivres(Localizacao localizacao) {
         List<Localizacao> livre = new LinkedList<Localizacao>();
         List<Localizacao> adjacente = localizacoesAdjacentes(localizacao);
@@ -73,9 +111,13 @@ public class Campo {
         return livre;
     }
 
-   
+    /**
+     * Retorna se uma localização passada por parâmetro é livre ou não
+     * @param localizacao
+     * @return 
+     */
     public Localizacao LocalizacaoAdjLivre(Localizacao localizacao) {
-        // The available free ones.
+        // As localizações livres disponíveis.
         List<Localizacao> livre = getLocalizacoesAdjLivres(localizacao);
         if (livre.size() > 0) {
             return livre.get(0);
@@ -105,19 +147,23 @@ public class Campo {
                 }
             }
 
-            // Shuffle the list. Several other methods rely on the list
-            // being in a random order.
+            // Embaralha a lista. 
             Collections.shuffle(localizacoes, rand);
         }
         return localizacoes;
     }
-
-   
+    /**
+     * Retorna a altura do campo
+     * @return altura 
+     */
     public int getAltura() {
         return altura;
     }
 
-    
+    /**
+     * Retorna a largura
+     * @return largura 
+     */
     public int getLargura() {
         return largura;
     }
