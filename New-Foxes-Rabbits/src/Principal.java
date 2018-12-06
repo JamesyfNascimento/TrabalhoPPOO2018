@@ -1,6 +1,9 @@
 
 import java.util.Random;
-
+/**
+ * Class principal - main
+ * @author Anderson, Isabela, James
+ */
 public class Principal {
 
     private static Simulador simulador;
