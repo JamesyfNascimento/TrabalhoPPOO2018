@@ -61,7 +61,7 @@ public class Urso extends Animal {
     return IDADE_MAXIMA;
   }
 
-  
+   
   private void aumentarFome() {
     setNivelComida(getNivelComida() - 1);
     if (getNivelComida() <= 0) {
