@@ -12,9 +12,10 @@ public class Campo {
     // gerador aleatória para gerar posicoes.
     private final Random rand = Randomico.getRandom();
     // A profundidade o a largura do campo.
-    private int altura, largura;
+    private final int altura;
+    private final int largura;
     // Armazenamento para os animais.
-    private Object[][] campo;
+    private final Object[][] campo;
 
     /**
      * Construtor para criacao do campo
@@ -100,13 +101,11 @@ public class Campo {
      * @return livre
      */
     public List<Localizacao> getLocalizacoesAdjLivres(Localizacao localizacao) {
-        List<Localizacao> livre = new LinkedList<Localizacao>();
+        List<Localizacao> livre = new LinkedList<>();
         List<Localizacao> adjacente = localizacoesAdjacentes(localizacao);
-        for (Localizacao proxima : adjacente) {
-            if (Campo.this.getPersonagem(proxima) == null) {
-                livre.add(proxima);
-            }
-        }
+        adjacente.stream().filter((proxima) -> (Campo.this.getPersonagem(proxima) == null)).forEachOrdered((proxima) -> {
+            livre.add(proxima);
+        });
         return livre;
     }
 
@@ -125,11 +124,15 @@ public class Campo {
         }
     }
 
-    
+    /**
+     * Encontra localizacoes adjacentes
+     * @param localizacao
+     * @return 
+     */
     public List<Localizacao> localizacoesAdjacentes(Localizacao localizacao) {
-        assert localizacao != null : "Null location passed to adjacentLocations";
+        assert localizacao != null : "Localizacao vazia passada para adjacentsLocations";
         // A lista de localizacoes a ser retornada.
-        List<Localizacao> localizacoes = new LinkedList<Localizacao>();
+        List<Localizacao> localizacoes = new LinkedList<>();
         if (localizacao != null) {
             int row = localizacao.getRow();
             int col = localizacao.getCol();
