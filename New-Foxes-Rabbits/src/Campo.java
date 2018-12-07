@@ -5,6 +5,7 @@ import java.util.Random;
 
 /**
  * Classe da criacao do campo onde ficam as diversas especies
+ * @author Anderson, Isabela, James
  */
 
 public class Campo {
@@ -18,8 +19,8 @@ public class Campo {
 
     /**
      * Construtor para criacao do campo
-     * @param altura dimensao altura
-     * @param largura dimensao largura
+     * @param altura dimensão altura
+     * @param largura dimensão largura
      */
     public Campo(int altura, int largura) {
         this.altura = altura;
@@ -109,7 +110,7 @@ public class Campo {
     }
 
     /**
-     * Retorna se uma localizacao passada por parametro e livre ou nao
+     * Retorna se uma localizacao passada por parametro e livre ou não
      * @param localizacao
      * @return 
      */
