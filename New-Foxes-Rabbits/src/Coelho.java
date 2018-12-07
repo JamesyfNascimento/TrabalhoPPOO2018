@@ -4,9 +4,7 @@ import java.util.List;
 /**
  * Classe para criacao de um simples coelho que pode procriar, comer grama, 
  * servir de presa para outros animais e morrer
- * @author isabela
  */
-
 public class Coelho extends Animal
 {
     // Caracteristicas comuns aos coelhos(class variables).

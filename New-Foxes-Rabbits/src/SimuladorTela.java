@@ -9,8 +9,7 @@ import javax.swing.text.DefaultCaret;
 
 
 /**
- * Configuracoes graficas da tela
- * @author Anderson, Isabela, James
+ * Configuracoes graficas da tela.
  */
 public class SimuladorTela extends JFrame {
     // Cores para localizacoes vazias
@@ -23,10 +22,8 @@ public class SimuladorTela extends JFrame {
     private final String POPULACAO = "Populacao: ";
     private JLabel passoLabel, populacao;
     
-    
     private CampoTela campoTela;
     private HistoricoTela historicoTela;
-
 
     // Uma mapa para armazenar as cores do participantes da simulacao
     private Map<Class, Color> cores;
@@ -44,7 +41,6 @@ public class SimuladorTela extends JFrame {
      */
     private ThreadRunner threadRunner;    
    
-    
     /**
      * Criacao dos componentes da tela
      * @param altura
@@ -57,12 +53,9 @@ public class SimuladorTela extends JFrame {
         statusCampo = new StatusCampo();
         cores = new LinkedHashMap<Class, Color>();
 
-        
         setTitle("Trabalho Final Disciplina PPOO");
         passoLabel = new JLabel(PASSO, JLabel.CENTER);
         populacao = new JLabel(POPULACAO, JLabel.CENTER);
-//        contents = getContentPane();
-//        setLocation(100, 50);
 
         campoTela = new CampoTela(altura, largura);
                
@@ -70,10 +63,8 @@ public class SimuladorTela extends JFrame {
             montarTelaHistorico(altura, largura);
         } catch (Exception e) {
         }
- 
 
         frame();
-
     }
     
     /**
@@ -112,18 +103,13 @@ public class SimuladorTela extends JFrame {
         JPanel containerMenuBotao = new JPanel();
         containerMenuBotao.setLayout(new GridLayout(20, 0)); 
         containerMenuBotao.setBorder(new EmptyBorder(20, 10, 20, 10));
-        
         menuBotao(containerMenuBotao);
-        
         frame.add(containerMenuBotao, BorderLayout.WEST); // toolbar panel toevoegen aan de main frame
-
-
         pack();
         //setSize(new Dimension(1024, 768));
         setLocationRelativeTo(null);
         setResizable(false);
         setVisible(true);
-
         setExtendedState(Frame.MAXIMIZED_BOTH);
     }
     
@@ -206,7 +192,6 @@ public class SimuladorTela extends JFrame {
         }
     }
 
-    
     /**
      * Mostra o status de cada passo no campo
      * @param step
@@ -219,7 +204,6 @@ public class SimuladorTela extends JFrame {
 
         passoLabel.setText(PASSO + step);
         statusCampo.resetar();
-
         campoTela.prepararPintura();
 
         for (int row = 0; row < campo.getAltura(); row++) {
@@ -234,17 +218,12 @@ public class SimuladorTela extends JFrame {
             }
         }
         statusCampo.countFinished();
-
         populacao.setText(POPULACAO + statusCampo.getDetalhePopulacao(campo));
         campoTela.repaint();
-        
-
         historicoTela.stats(getDetalhePopulacao());
         historicoTela.historico();
-
     }
 
-    
     /**
      * Se o camo e viavel
      * @param campo
@@ -253,7 +232,6 @@ public class SimuladorTela extends JFrame {
     public boolean isViable(Campo campo) {
         return statusCampo.isViable(campo);
     }
-    
     
     public HashMap<Color, Contador> getDetalhePopulacao() {
         HashMap<Class, Contador> classStats = statusCampo.getPopulacao();
@@ -265,7 +243,6 @@ public class SimuladorTela extends JFrame {
         return colorStats;
     }
     
-    
     /**
      * Retorna a threadRunner
      * @return threadRunner
@@ -273,5 +250,4 @@ public class SimuladorTela extends JFrame {
     public ThreadRunner getThreadRunner() {
             return threadRunner;
     }
-
 }

@@ -2,7 +2,6 @@ import java.util.Random;
 
 /**
  * Classe para gerar os valores aleatorios usados
- * @author isabela
  */
 public class Randomico {
     // Um valor semente padrao.

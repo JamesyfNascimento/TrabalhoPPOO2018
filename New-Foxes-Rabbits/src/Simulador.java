@@ -5,8 +5,7 @@ import java.util.Iterator;
 import java.awt.Color;
 
 /**
- * Classe para definir as configuracoes do simulador
- * @author Anderson, Isabela, James
+ * Classe para definir as configuracoes do simulador.
  */
 public class Simulador
 {

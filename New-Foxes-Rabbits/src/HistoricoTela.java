@@ -5,8 +5,7 @@ import javax.swing.JPanel;
 import javax.swing.JTextArea;
 
 /**
- * Classe que mostra as informacẽos do esta acontecendo no simulador
- * @author Anderson, Isabela, James
+ * Classe que mostra as informacẽos do esta acontecendo no simulador.
  */
 public class HistoricoTela extends JPanel
 {

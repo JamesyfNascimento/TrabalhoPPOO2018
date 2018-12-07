@@ -1,10 +1,8 @@
 import java.util.List;
 import java.util.Iterator;
 
-
 /**
- * Classe com as caracerísticas e acões das raposas
- * @author Anderson, Isabela, James
+ * Classe com as caracerísticas e acões das raposas.
  */
 public class Raposa extends Animal {
      // Características comuns às raposas.

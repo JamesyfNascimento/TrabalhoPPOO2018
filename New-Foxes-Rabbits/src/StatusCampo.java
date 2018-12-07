@@ -1,27 +1,35 @@
 import java.awt.Color;
 import java.util.HashMap;
 
-
-public class StatusCampo
-{
+/**
+ * Esta classe coleta e fornece alguns dados estatisticos sobre o estado de um
+ * campo. E flexivel: criara e mantera um contador para qualquer classe de
+ * objeto encontrada no campo.
+ */
+public class StatusCampo {
     static int rabbitCount;
     static int foxCount;
-    // Counters for each type of entity (fox, rabbit, etc.) in the simulation.
+    // Contadores para cada tipo de entidade (raposa, coelho, etc.) na simulacao.
     private HashMap<Class, Contador> counters;
-    // Whether the counters are currently up to date.
+    // Se os contadores estao atualizados no momento.
     private boolean countsValid;
 
-    public StatusCampo()
-    {
-        // Set up a collection for counters for each type of animal that
-        // we might find
+    /**
+     * Construtor para um objeto StatusCampo.
+     */
+    public StatusCampo() {
+        // Configure uma coleção de contadores para cada tipo de animal que
+        // possamos encontrar.
         counters = new HashMap<Class, Contador>();
         countsValid = true;
     }
 
-    
-    public String getDetalhePopulacao(Campo field)
-    {
+    /**
+     * Obtenhem detalhes do que está no campo.
+     * @param field O campos em si com todos os personagens
+     * @return Uma string descrevendo o que está no campo.
+     */
+    public String getDetalhePopulacao(Campo field) {
         StringBuffer buffer = new StringBuffer();
         if(!countsValid) {
             generateCounts(field);
@@ -36,9 +44,11 @@ public class StatusCampo
         return buffer.toString();
     }
     
-    
-    public void resetar()
-    {
+    /**
+     * Invalida o conjunto atual de estatisticas. 
+     * Redefinir todas as contagens para zero.
+     */
+    public void resetar() {
         countsValid = false;
         for(Class key : counters.keySet()) {
             Contador count = counters.get(key);
@@ -46,29 +56,34 @@ public class StatusCampo
         }
     }
 
-   
-    public void incrementaContador(Class animalClass)
-    {
+   /**
+    * Incrementa a contagem para uma classe de animal.
+    * @param animalClass A classe de animais para incrementar.
+    */
+    public void incrementaContador(Class animalClass) {
         Contador count = counters.get(animalClass);
         if(count == null) {
-            // We do not have a counter for this species yet.
-            // Create one.
+            // Cria um contador para uma especie que ainda nao o possui.
             count = new Contador(animalClass.getName());
             counters.put(animalClass, count);
         }
         count.increment();
     }
 
-    
-    public void countFinished()
-    {
+    /**
+     * Indica que uma contagem de animais foi concluida.
+     */
+    public void countFinished() {
         countsValid = true;
     }
 
-   
-    public boolean isViable(Campo field)
-    {
-        // How many counts are non-zero.
+   /**
+    * Determina se a simulacao ainda e viavel. Ou seja, se deve continuar.
+    * @param field O campo de simulacao contendo os personagens.
+    * @return true Se houver mais de uma esprcie viva.
+    */
+    public boolean isViable(Campo field) {
+        // Quantas contagens sao diferentes de zero.
         int nonZero = 0;
         if(!countsValid) {
             generateCounts(field);
@@ -82,11 +97,20 @@ public class StatusCampo
         return nonZero > 1;
     }
     
+    /**
+     * Contador de cada personagem da simulacao.
+     * @return A quantidade dos individos de cada especie.
+     */
     public HashMap<Class, Contador> getPopulacao() {
         return counters;
     }
     
-    
+    /**
+     * Gera contagens do numero de raposas, coelhos, etc.
+     * Estes nao sao mantidos atualizados como personagens, sao colocados no
+     * campo, mas somente quando um pedido e feito para a informacao.
+     * @param field O campo para gerar as estatisticas.
+     */
     private void generateCounts(Campo field)
     {
         resetar();
@@ -101,6 +125,10 @@ public class StatusCampo
         countsValid = true;
     }
     
+    /**
+     * Valida a contagem de personagens no campo.
+     * @return true se a contagem for valida.
+     */
     public boolean getCountsValid() {
         return countsValid;
     }

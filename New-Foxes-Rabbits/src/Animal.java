@@ -3,7 +3,6 @@ import java.util.Random;
 
 /**
  * Classe abstrata com as caracteristicas comuns a todos os animais
- * @author Anderson, Isabela, James
  */
 public abstract class Animal implements Personagem {
     // Se o animal esta vivo ou nao.
@@ -31,10 +30,10 @@ public abstract class Animal implements Personagem {
         setLocalizacao(localizacao);
     }
 
-    @Override
     /**
-     * Método para determinar a acao do personagem
+     * Metodo para determinar a acao do personagem
      */
+	@Override
     public abstract void act(List<Personagem> novosAnimais);
 
     /**
@@ -69,14 +68,13 @@ public abstract class Animal implements Personagem {
     }
 
     /**
-     * Método para definir idade maxima
+     * Metodo para definir idade maxima
      * @return idade maxima 
      */
     protected abstract int idadeMaxima();
 
     /**
-     * Retorna a localizacao do animal.
-     * @return localização
+     * @return localização do animal.
      */
     protected Localizacao getLocalizacao() {
         return localizacao;
@@ -96,16 +94,15 @@ public abstract class Animal implements Personagem {
     }
 
     /**
-     * Retorna o campo onde esta o animal.
-     * @return o campo
+     * @return o campo onde esta o animal.
      */
     protected Campo getCampo() {
         return campo;
     }
     
     /**
-     * Método para determinar o nacimentos dos agentes que estão no campo
-     * @return numero de nascimentos
+     * Metodo para determinar o nacimentos dos agentes que estão no campo.
+     * @return o numero de nascimentos.
      */
     protected int procriar() {
         int nascimentos = 0;
@@ -116,60 +113,55 @@ public abstract class Animal implements Personagem {
     }
 
     /**
-     * Alguns animais podem pocriar outros não
-     * @return true or false
+     * Alguns animais podem pocriar outros nao.
+     * @return true or false.
     */
     protected abstract boolean podeProcriar();
 
     /**
-     * Retorna a idade do animal.
-     * @return a idade
+     * @return a idade do animal.
      */
     protected int getIdade() {
         return idade;
     }
 
     /**
-     * Configura a idade atual do animal
-     * @param age idade do tipo int do animal
+     * Configura a idade atual do animal.
+     * @param age A idade do animal.
      */
     protected void setIdade(int age) {
         this.idade = age;
     }
 
     /**
-     * Retorna o nivel alimentar do animal
-     * @return o nivel alimentar
+     * @return o nivel alimentardo animal.
      */
     protected int getNivelComida() {
         return nivelComida;
     }
 
     /**
-     * Configura o nivel alimentar do animal
-     * @param nivelComida
+     * Configura o nivel alimentar do animal.
+     * @param nivelComida o nível alimentar.
      */
     protected void setNivelComida(int nivelComida) {
         this.nivelComida = nivelComida;
     }
 
     /**
-     * Retorna um numero aleatorio que ira controlar a reproducao.
-     * @return um numero aleatorio
+     * @return um numero aleatorio que ira controlar a reproducao.
      */
     protected Random getRandom() {
         return rand;
     }
 
     /**
-     * Retorno do número máximo de nascimentos
-     * @return 
+     * @return o numero maximo de nascimentos.
      */
     protected abstract int getNumMaxNascimento();
 
     /**
-     * Retorna a probabilidade de procriar
-     * @return 
+     * @return a probabilidade de procriar.
      */
     protected abstract double getProbabilidadeProcriar();
 }

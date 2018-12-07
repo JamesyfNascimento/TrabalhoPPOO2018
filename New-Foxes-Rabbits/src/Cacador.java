@@ -10,7 +10,7 @@ public class Cacador implements Personagem
 {
     // O campo do cacador.
     private final Campo campo;
-    // A posicao do caçador no campo.
+    // A posicao do cacador no campo.
     private Localizacao localizacao;
     // Se o cacador esta vivo ou nao.
     private boolean ehVivo;
@@ -27,7 +27,10 @@ public class Cacador implements Personagem
         setLocalizacao(novaLocalizacao);
         ehVivo = true;
     }
-   
+    /**
+     * Atividade dos novos cacadores.
+     * @param novosCacadores Os cacadores recem criados.
+     */
     @Override
     public void act(List<Personagem> novosCacadores)
     {
@@ -91,7 +94,7 @@ public class Cacador implements Personagem
     }
     
     /**
-      * Retorna a localização do caçador.
+      * Retorna a localizacao do cacador.
       * @return localizacao A localizacao do cacador.
      */
     public Localizacao getLocalizacao()
@@ -100,8 +103,8 @@ public class Cacador implements Personagem
     }
 
     /**
-      *Coloque o caçador no novo local no campo dado.
-      * @param novaLocalizacao A nova localização do caçador.
+      *Coloque o cacador no novo local no campo dado.
+      * @param novaLocalizacao A nova localizacao do cacador.
      */
     @Override
     public void setLocalizacao(Localizacao novaLocalizacao)
@@ -114,8 +117,7 @@ public class Cacador implements Personagem
     }
     
     /**
-      * Retorna o campo do caçador.
-      * @return campo O campo do caçador.
+      * @return O campo do cacador.
      */
     public Campo getCampo()
     {

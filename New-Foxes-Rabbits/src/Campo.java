@@ -5,7 +5,6 @@ import java.util.Random;
 
 /**
  * Classe da criacao do campo onde ficam as diversas especies
- * @author Anderson, Isabela, James
  */
 
 public class Campo {
