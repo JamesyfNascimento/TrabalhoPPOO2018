@@ -5,19 +5,19 @@ import javax.swing.JPanel;
 import javax.swing.JTextArea;
 
 /**
- * Classe que mostra as informaçẽos do está acontecendo no simulador
+ * Classe que mostra as informacẽos do esta acontecendo no simulador
  * @author Anderson, Isabela, James
  */
 public class HistoricoTela extends JPanel
 {
-	// Area de texto que mostra informações 
+	// Area de texto que mostra informacoes 
 	private JTextArea textArea;
 	private int step = -1;
 
 	private HashMap<Color, Contador> stats;
 	/**
-         * A Classe Historico tela está configurada para mostrar informações 
-         * sobre o número de seres vivos no ambiente.
+         * A Classe Historico tela esta configurada para mostrar informacoes 
+         * sobre o numero de seres vivos no ambiente.
          * @param height
          * @param width 
          */
@@ -27,7 +27,7 @@ public class HistoricoTela extends JPanel
 	}
 	
 	/**
-         * Recebe as informações
+         * Recebe as informacoes
          * @param stats 
          */
 	public void stats(HashMap<Color, Contador> stats)
@@ -36,8 +36,8 @@ public class HistoricoTela extends JPanel
 	}
 	
 	/**
-         * A cada passo/iteração as informações sobre os números de seres no 
-         * campo é atualizado e mostrado na área de texto
+         * A cada passo/iteracao as informacoes sobre os numeros de seres no 
+         * campo e atualizado e mostrado na area de texto
          */
 	public void historico()
 	{
@@ -48,7 +48,7 @@ public class HistoricoTela extends JPanel
                 nStep =("Passo: " + step + "  ");
                 for(Color color : stats.keySet()){
                     Contador info = stats.get(color);
-                    buffer.append(info.getName());	//	show info
+                    buffer.append(info.getName());	//mostra informacao
                     buffer.append(": ");
                     buffer.append(info.getCount());
                     buffer.append(' ');
@@ -63,7 +63,7 @@ public class HistoricoTela extends JPanel
             }
         }	
 	/**
-         * Configuração dos passos/iterações
+         * Configuracao dos passos/iteracoes
          * @param step 
          */
 	public void setStep(int step)
@@ -71,7 +71,7 @@ public class HistoricoTela extends JPanel
 		this.step = step;
 	}
 	/**
-         * Configura a área de texto
+         * Configura a area de texto
          * @param textArea 
          */
 	public void setTextArea(JTextArea textArea)
@@ -80,7 +80,7 @@ public class HistoricoTela extends JPanel
 	}
 	
 	/**
-         * Retorna a área de texto
+         * Retorna a area de texto
          * @return textArea
          */
 	public JTextArea getTextArea()
