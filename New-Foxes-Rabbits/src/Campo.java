@@ -4,12 +4,12 @@ import java.util.List;
 import java.util.Random;
 
 /**
- * Classe da criação do campo onde ficam as diversas espécies
+ * Classe da criacao do campo onde ficam as diversas especies
  * @author Anderson, Isabela, James
  */
 
 public class Campo {
-    // gerador aleatória para gerar posições.
+    // gerador aleatória para gerar posicoes.
     private final Random rand = Randomico.getRandom();
     // A profundidade o a largura do campo.
     private int altura, largura;
@@ -17,7 +17,7 @@ public class Campo {
     private Object[][] campo;
 
     /**
-     * Construtor para criação do campo
+     * Construtor para criacao do campo
      * @param altura dimensão altura
      * @param largura dimensão largura
      */
@@ -39,7 +39,7 @@ public class Campo {
     }
 
     /**
-     * Limpar uma determinada localização
+     * Limpar uma determinada localizacao
      * @param location 
      */
     public void limpar(Localizacao location) {
@@ -47,7 +47,7 @@ public class Campo {
     }
     
     /**
-     * Retorna a localização no campo 
+     * Retorna a localizacao no campo 
      * @param animal - Objeto da classe animal
      * @param row - linha no campo
      * @param col - coluna no campo
@@ -56,17 +56,17 @@ public class Campo {
         lugar(animal, new Localizacao(row, col));
     }
     /**
-     * ????
+     * Atraves de uma localizacao encontra a posicao linha/coluna no campo
+     * e adiciona um animal
      * @param animal
      * @param localizacao 
      */
-   
     public void lugar(Object animal, Localizacao localizacao) {
         campo[localizacao.getRow()][localizacao.getCol()] = animal;
     }
 
     /**
-     * Retorna um personagem (exemplo caçador), dada sua localização
+     * Retorna um personagem (exemplo cacador), dada sua localizacao
      * @param localizacao
      * @return 
      */    
@@ -85,7 +85,7 @@ public class Campo {
     }
 
     /**
-     * Retona as localizções adjacentes
+     * Retona as localizacoes adjacentes
      * @param localizacao
      * @return adjacente
      */
@@ -111,12 +111,12 @@ public class Campo {
     }
 
     /**
-     * Retorna se uma localização passada por parâmetro é livre ou não
+     * Retorna se uma localizacao passada por parametro e livre ou não
      * @param localizacao
      * @return 
      */
     public Localizacao LocalizacaoAdjLivre(Localizacao localizacao) {
-        // As localizações livres disponíveis.
+        // As localizacoes livres disponíveis.
         List<Localizacao> livre = getLocalizacoesAdjLivres(localizacao);
         if (livre.size() > 0) {
             return livre.get(0);
@@ -128,7 +128,7 @@ public class Campo {
     
     public List<Localizacao> localizacoesAdjacentes(Localizacao localizacao) {
         assert localizacao != null : "Null location passed to adjacentLocations";
-        // The list of locations to be returned.
+        // A lista de localizacoes a ser retornada.
         List<Localizacao> localizacoes = new LinkedList<Localizacao>();
         if (localizacao != null) {
             int row = localizacao.getRow();
@@ -138,7 +138,7 @@ public class Campo {
                 if (nextRow >= 0 && nextRow < altura) {
                     for (int coffset = -1; coffset <= 1; coffset++) {
                         int nextCol = col + coffset;
-                        // Exclude invalid locations and the original location.
+                        // Exclui localizacoes invalidas.
                         if (nextCol >= 0 && nextCol < largura && (roffset != 0 || coffset != 0)) {
                             localizacoes.add(new Localizacao(nextRow, nextCol));
                         }
