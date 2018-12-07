@@ -19,8 +19,8 @@ public class Campo {
 
     /**
      * Construtor para criacao do campo
-     * @param altura dimensão altura
-     * @param largura dimensão largura
+     * @param altura dimensao altura
+     * @param largura dimensao largura
      */
     public Campo(int altura, int largura) {
         this.altura = altura;
@@ -110,7 +110,7 @@ public class Campo {
     }
 
     /**
-     * Retorna se uma localizacao passada por parametro e livre ou não
+     * Retorna se uma localizacao passada por parametro e livre ou nao
      * @param localizacao
      * @return 
      */
