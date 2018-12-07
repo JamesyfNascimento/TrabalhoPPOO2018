@@ -146,7 +146,7 @@ public abstract class Animal implements Personagem {
 
     /**
      * Configura o nivel alimentar do animal
-     * @paran o nivel alimentar
+     * @param nivelComida
      */
     protected void setNivelComida(int nivelComida) {
         this.nivelComida = nivelComida;
