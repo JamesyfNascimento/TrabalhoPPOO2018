@@ -5,16 +5,16 @@ import java.util.Iterator;
 import java.awt.Color;
 
 /**
- * Classe para definir as configurações do simulador
+ * Classe para definir as configuracoes do simulador
  * @author Anderson, Isabela, James
  */
 public class Simulador
 {
-    // Variáveis que definem as configurações do simulador
+    // Variaveis que definem as configuracoes do simulador
     // Valor default para o tamanho do grid
     private static final int LARGURA_PADRAO = 100;
     private static final int ALTURA_PADRAO = 60;
-    // Probabilidades de reprodução dos personagens que fazem parte da simulação 
+    // Probabilidades de reproducao dos personagens que fazem parte da simulacao 
     private static double PROBABILIDADE_REPRODUCAO_URSO = 0.01;
     private static double PROBABILIDADE_REPRODUCAO_RAPOSA = 0.02;
     private static double PROBABILIDADE_REPRODUCAO_COELHO = 0.08;    
@@ -24,14 +24,14 @@ public class Simulador
     // Lista de agentes no campo
     private List<Personagem> personagens;
     private Campo campo;
-    // Passo autual da simulação
+    // Passo autual da simulacao
     private int passo = 0;
-    // Visualização gráfica do simulador
+    // Visualizacao grafica do simulador
     private SimuladorTela tela;
 
     
     /**
-     * Criação do simulador padrão
+     * Criacao do simulador padrao
      */
     public Simulador()
     {
@@ -39,15 +39,15 @@ public class Simulador
     }
     
     /**
-     * Criação do simulador com dimensões definidas através dos parâmetros
+     * Criacao do simulador com dimensoes definidas através dos parametros
      * @param altura
      * @param largura 
      */
     public Simulador(int altura, int largura)
     {
         if(largura <= 0 || altura <= 0) {
-            System.out.println("As dimensões devem ser maiores que zero.");
-            System.out.println("Usando Valores Padrão");
+            System.out.println("As dimensoes devem ser maiores que zero.");
+            System.out.println("Usando Valores Padrao");
             altura = ALTURA_PADRAO;
             largura = LARGURA_PADRAO;
         }
@@ -55,7 +55,7 @@ public class Simulador
         personagens = new ArrayList<Personagem>();
         campo = new Campo(altura, largura);
 
-        // Cria a visualização de cada personagem atribuindo uma cor diferente.
+        // Cria a visualizacao de cada personagem atribuindo uma cor diferente.
         tela = new SimuladorTela(altura, largura);
         tela.setColor(Coelho.class, Color.ORANGE);
         tela.setColor(Raposa.class, Color.BLUE);
@@ -66,7 +66,7 @@ public class Simulador
     }
     
     /**
-     * Um passo de execução
+     * Um passo de execucao
      */
     public void umPasso()
     {
@@ -74,11 +74,10 @@ public class Simulador
 
         List<Personagem> novosPersonagens = new ArrayList<Personagem>();
         
-        // Let all actors act.
         for(Iterator<Personagem> it = personagens.iterator(); it.hasNext();) {
             Personagem personagem = it.next();
             personagem.act(novosPersonagens);
-            if (personagem instanceof Animal)		//	check if actor is an animal
+            if (personagem instanceof Animal)		//Verifica se o personagem e um animal
             {
                     Animal animal = (Animal) personagem;
                     if(! animal.ehVivo()) {
@@ -110,7 +109,7 @@ public class Simulador
         personagens.clear();
         populacao();
         
-        // Show the starting state in the view.
+        // Mostra o estado inicial na visualizacao.
         tela.mostrarStatus(passo, campo);
     }
     
@@ -144,7 +143,7 @@ public class Simulador
     
     
    /**
-    * Cria população
+    * Cria populacao
     */
     private void populacao()
     {
@@ -183,7 +182,7 @@ public class Simulador
     }
     
     /**
-     * Atribui nova probabilidade de reprodução
+     * Atribui nova probabilidade de reproducao
      * @param probReproducaoUrso 
      */
     public static void setProbReproducaoUrso(double probReproducaoUrso)
@@ -193,7 +192,7 @@ public class Simulador
     }
     
     /**
-     * Atribui nova probabilidade de reprodução
+     * Atribui nova probabilidade de reproducao
      * @param probReproducaoRaposa 
      */
     public static void setProbReproducaoRaposa(double probReproducaoRaposa)
@@ -203,7 +202,7 @@ public class Simulador
     }
     
     /**
-     * Atribui nova probabilidade de reprodução
+     * Atribui nova probabilidade de reproducao
      * @param probReproducaoRaposa 
      */
     public static void setProbReproducaoCoelho(double probReproducaoRaposa)
@@ -213,7 +212,7 @@ public class Simulador
     }
     
     /**
-     * Atribui nova probabilidade de reprodução
+     * Atribui nova probabilidade de reproducao
      * @param probReproducaoCacador 
      */
     public static void setProbReproducaoCacador(double probReproducaoCacador)
@@ -223,7 +222,7 @@ public class Simulador
     }
     
     /**
-     * Atribui nova probabilidade de reprodução
+     * Atribui nova probabilidade de reproducao
      * @param probReproducaoGrama 
      */
     public static void setProbReproducaoGrama(double probReproducaoGrama)
