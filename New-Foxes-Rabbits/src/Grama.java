@@ -1,9 +1,9 @@
 import java.util.List;
 
 public class Grama extends Planta {
-  // Características da grama.
+  // Caracteristicas da grama.
 
-  // Idade de reprodução.
+  // Idade de reproducao.
   private static int IDADE_REPRODUCAO = 3;
   // Tempo de vida da grama.
   private static int IDADE_MAXIMA = 12;
@@ -13,10 +13,10 @@ public class Grama extends Planta {
 
   /**
    * Ao ser criada a grama assim como todos os outros seres vivos do ambiente
-   * criado pode ter idade aleatória, como também ser nova
+   * criado pode ter idade aleatoria, como tambem ser nova
    * @param idadeAleatoria booleando
    * @param campo tipo da Classe Campo
-   * @param localizacao tipo da Classe Localização
+   * @param localizacao tipo da Classe Localizacao
    */
   public Grama(boolean idadeAleatoria, Campo campo, Localizacao localizacao) {
     super(campo, localizacao);
@@ -27,7 +27,7 @@ public class Grama extends Planta {
   }
  
   /**
-   * Ações possíveis da grama
+   * Acoes possiveis da grama
    * @param novasGramas 
    */  
   @Override
@@ -41,7 +41,7 @@ public class Grama extends Planta {
       if (novaLocalizacao != null) {
         setLocalizacao(novaLocalizacao);
       } else {
-        // Superpopulação.
+        // Superpopulacao.
         matar();
       }
     }
@@ -52,8 +52,8 @@ public class Grama extends Planta {
    * @param novasGramas 
    */
   private void plantar(List<Personagem> novasGramas) {
-    // New grass are born into adjacent locations.
-    // Get a list of adjacent free locations.
+    // Nova grama nasce na localizações adjacentes.
+    // Recebe uma lista de localizações adjacentes livres.
     Campo campo = getCampo();
     List<Localizacao> livre = campo.getLocalizacoesAdjLivres(getLocalizacao());
     int nascimentos = procriar();
@@ -65,7 +65,7 @@ public class Grama extends Planta {
   }
 
   /**
-   * Se pode nascer gerar novos espécimes
+   * Se pode nascer gerar novos especimes
    * @return 
    */
   @Override
@@ -83,7 +83,7 @@ public class Grama extends Planta {
   }
 
   /**
-   * Configuração da idade máxima que a grama pode atingir
+   * Configuracao da idade maxima que a grama pode atingir
    * @param idadeMaxima 
    */
   public static void setIdadeMaxima(int idadeMaxima) {
@@ -92,7 +92,7 @@ public class Grama extends Planta {
   }
 
   /**
-   * Configuração da probabilidade de reproduzir
+   * Configuracao da probabilidade de reproduzir
    * @param probabilidadeNascer 
    */
   public static void setProbabilidadeNascer(double probabilidadeNascer) {
@@ -101,7 +101,7 @@ public class Grama extends Planta {
   }
 
   /**
-   * Número máximo de reproduções
+   * Número maximo de reproducoes
    * @param maxNascimentos 
    */
   public static void setMaxNascimento(int maxNascimentos) {
@@ -110,7 +110,7 @@ public class Grama extends Planta {
   }
 
  /**
-  * Valores default atribuídos à grama 
+  * Valores default atribuidos à grama 
   */
   public static void setPadrao() {
     IDADE_REPRODUCAO = 1;
@@ -120,7 +120,7 @@ public class Grama extends Planta {
   }
 
   /**
-   * Retorna a idade de reprodução
+   * Retorna a idade de reproducao
    * @return 
    */
   protected int getIdadeNascer() {
@@ -128,7 +128,7 @@ public class Grama extends Planta {
   }
 
   /**
-   * Retorna a idade máxima que pode chegar a grama
+   * Retorna a idade maxima que pode chegar a grama
    * @return IDADE_MAXIMA
    */
   @Override
@@ -137,7 +137,7 @@ public class Grama extends Planta {
   }
 
   /**
-   * retorna o maximo de reproduções
+   * retorna o maximo de reproducoes
    * @return MAX_NASCIMENTOS
    */
   @Override
