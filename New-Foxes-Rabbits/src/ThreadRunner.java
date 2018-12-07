@@ -1,5 +1,5 @@
 /**
- * Classe que cuida dos passos da iteração
+ * Classe que cuida dos passos da iteracao
  * @author Anderson, Isabela, James
  */
 
@@ -13,7 +13,7 @@ public class ThreadRunner implements Runnable {
 
   }
   /**
-   * Número de passos da execução
+   * Numero de passos da execucao
    * @param numSteps 
    */
   public void startRun(int numSteps) {
@@ -35,7 +35,7 @@ public class ThreadRunner implements Runnable {
   }
 
   /**
-   * Para execução
+   * Para execucao
    */
   public void stop() {
     numSteps = 0;
@@ -44,7 +44,7 @@ public class ThreadRunner implements Runnable {
   }
 
   /**
-   * Executa o simulador, determina o tempo entre a execução de um passo para 
+   * Executa o simulador, determina o tempo entre a execucao de um passo para 
    * outro
    */
   @Override
