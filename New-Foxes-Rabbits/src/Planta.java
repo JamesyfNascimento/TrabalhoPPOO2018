@@ -2,31 +2,31 @@ import java.util.List;
 import java.util.Random;
 
 /**
- * Classe abstrata para criação de seres vivos que façam parte da vegetação
+ * Classe abstrata para criacao de seres vivos que facam parte da vegetacao
  * @author Anderson, Isabela, James
  */
 public abstract class Planta implements Personagem {
-  // Se está viva ou não.
+  // Se esta viva ou nao.
   private boolean vivo;
   // Campo da planta.
   private Campo campo;
-  // Localização.
+  // Localizacao.
   private Localizacao localizacao;
   // Idade da planta.
   private int idade;
-  // Nível da alimentação
+  // Nivel da alimentacao
   private int nivelAlimentar;
 
   
   public static final int NUM_PASSOS_REPRODUZIR = 12;
-  // gerador de valores aleatórios
+  // gerador de valores aleatorios
   protected static final Random rand = Randomico.getRandom();
 
  /**
      * Construtor que recebe os parametros do campo da planta e a localizacao e 
      * cria a planta na localizacao determinada por padrao viva (obvio).
      * @param campo do tipo Campo
-     * @param localizacao do tipo Localização
+     * @param localizacao do tipo Localizacao
      */    
   public Planta(Campo campo, Localizacao localizacao) {
     vivo = true;
@@ -34,7 +34,7 @@ public abstract class Planta implements Personagem {
     setLocalizacao(localizacao);
   }
     /**
-     * Método para determinar a ação do personagem
+     * Método para determinar a acao do personagem
      * @param novasPlantas
      */
   @Override
@@ -71,21 +71,21 @@ public abstract class Planta implements Personagem {
   }
 
   /**
-   * Para retornar a idade máxima
+   * Para retornar a idade maxima
    * @return 
    */  
   protected abstract int getIdadeMaxima();
 
     /**
      * Retorna a localizacao da planta.
-     * @return localização
+     * @return localizacao
      */
   protected Localizacao getLocalizacao() {
     return localizacao;
   }
 
   /**
-   * Atribuição de nova localização
+   * Atribuicao de nova localizacao
    * @param newLocation 
    */
   @Override
@@ -106,7 +106,7 @@ public abstract class Planta implements Personagem {
   }
 
   /**
-   * Criar as novas gerações
+   * Criar as novas geracoes
    * @return births
    */
   protected int procriar() {
@@ -140,7 +140,7 @@ public abstract class Planta implements Personagem {
   }
 
   /**
-   * Retorna nível de alimentação
+   * Retorna nivel de alimentacao
    * @return nivelAlimentar
    */
   protected int getNivelAlimentar() {
@@ -148,7 +148,7 @@ public abstract class Planta implements Personagem {
   }
 
   /**
-   * Atribui nível alimentar
+   * Atribui nivel alimentar
    * @param nivelAlimentar 
    */
   protected void setNivelAlimentar(int nivelAlimentar) {
@@ -156,7 +156,7 @@ public abstract class Planta implements Personagem {
   }
 
   /**
-   * Retorna valor aleatório
+   * Retorna valor aleatorio
    * @return rand
    */  
   protected Random getRandom() {
@@ -164,7 +164,7 @@ public abstract class Planta implements Personagem {
   }
 
   /**
-   * Retornar máximo de nascimentos
+   * Retornar maximo de nascimentos
    * @return 
    */
   protected abstract int getMaxNascimento();
