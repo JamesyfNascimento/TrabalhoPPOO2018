@@ -3,29 +3,30 @@ import java.util.List;
 import java.util.Iterator;
 
 /**
- * Um modelo simples de um urso que pose se mover, comer ou morrer.
+ * Um modelo simples de um urso que pode se mover, comer ou morrer.
  */
 public class Urso extends Animal {
-    // Características compartilhadas entre os ursos.
+    // Caracteristicas compartilhadas entre os ursos.
 
-    // A idade que um urso pode começar a procriar.
+    // A idade que um urso pode comecar a procriar.
     private static int IDADE_REPRODUCAO = 30;
-    // A idade máxim que pode viver o urso
+    // A idade maxima que pode viver o urso
     private static int IDADE_MAXIMA = 190;
     // Probabiliade de procriar
     private static double PROBABILIDADE_REPRODUCAO = 0.02;
-    // Número máximo de filhotes.
+    // Número maximo de filhotes.
     private static int MAX_NASCIMENTO = 1;
-    // Valor da alimentação e quantidade de passos para comer novamente
+    // Valor da alimentacao e quantidade de passos para comer novamente
     private static final int NUM_PASSOS_REPRODUZIR = 9;
     private static final int VALOR_ALIMENTO_RAPOSA = 18;
 
     /**
-     * Criação de um urso com idade aleatória ou recém-nascido
+     * Criacao de um urso com idade aleatória ou recem-nascido
      *
      * @param idadeAleatoria
      * @param campo
      * @param localizacao
+     * 
      */
     public Urso(boolean idadeAleatoria, Campo campo, Localizacao localizacao) {
         super(campo, localizacao);
@@ -39,7 +40,7 @@ public class Urso extends Animal {
     }
 
     /**
-     * Ações do urso
+     * Acoes do urso
      *
      * @param novoUrsos
      */
@@ -52,21 +53,21 @@ public class Urso extends Animal {
             // Procura comida
             Localizacao novaLocalizacao = procuraComida();
             if (novaLocalizacao == null) {
-                // Se não acha comida se move.
+                // Se nao acha comida se move.
                 novaLocalizacao = getCampo().LocalizacaoAdjLivre(getLocalizacao());
             }
-            // Verifica se é possível se mover
+            // Verifica se e possível se mover
             if (novaLocalizacao != null) {
                 setLocalizacao(novaLocalizacao);
             } else {
-                // Superpopulação.
+                // Superpopulacao.
                 matar();
             }
         }
     }
 
     /**
-     * Idade máxima
+     * Idade maxima
      *
      * @return IDADE_MAXIMA
      */
@@ -86,7 +87,7 @@ public class Urso extends Animal {
     }
 
     /**
-     * Ações necessárias para procurar comida
+     * Acões necessarias para procurar comida
      *
      * @return
      */
@@ -123,8 +124,7 @@ public class Urso extends Animal {
      * @param novosUrsos
      */
     private void darHaLuz(List<Personagem> novosUrsos) {
-        // New bears are born into adjacent locations.
-        // Get a list of adjacent free locations.
+        // Novos ursos nacem em localizacoes adjacetes.
         Campo campo = getCampo();
         List<Localizacao> livre = campo.getLocalizacoesAdjLivres(getLocalizacao());
         int births = procriar();
@@ -136,9 +136,9 @@ public class Urso extends Animal {
     }
 
     /**
-     * Determina se o urso pode procriar ou não
+     * Determina se o urso pode procriar ou nao
      *
-     * @return getIdade() >= getIdadeReproduzir()
+     * @return idade se for maoir ou igual a idade de reproducao
      */
     @Override
     protected boolean podeProcriar() {
@@ -146,7 +146,7 @@ public class Urso extends Animal {
     }
 
     /**
-     * Retorna se o urso está em idade de procriação
+     * Retorna se o urso esta em idade de procriacao
      *
      * @return IDADE_REPRODUÇÃO
      */
@@ -175,7 +175,7 @@ public class Urso extends Animal {
     }
 
     /**
-     * Configura a idade de reprodução de um urso
+     * Configura a idade de reproducao de um urso
      *
      * @param novaIdadeReproducao
      */
@@ -184,7 +184,7 @@ public class Urso extends Animal {
     }
 
     /**
-     * Configura a idade máxima de uma raposa
+     * Configura a idade maxima de uma raposa
      *
      * @param novaIdadeMaxima
      */
@@ -193,7 +193,7 @@ public class Urso extends Animal {
     }
 
     /**
-     * Atriubir nova probalidade de reprodução
+     * Atribuir nova probalidade de reproducao
      *
      * @param novaProbReproducao
      */
@@ -202,7 +202,7 @@ public class Urso extends Animal {
     }
 
     /**
-     * Configura o número máximo de nascimentos
+     * Configura o número maximo de nascimentos
      *
      * @param maxNascimento
      */
