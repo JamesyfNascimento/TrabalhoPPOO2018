@@ -23,6 +23,7 @@ public class Localizacao {
     * @param obj
     * @return valor booleano
     */
+    @Override
     public boolean equals(Object obj)
     {
         if(obj instanceof Localizacao) {
