@@ -1,5 +1,6 @@
 /**
- * Classe para determinar localizacao.
+ * Classe para determinar localizacao
+ * @author Anderson, Isabela, James
  */
 public class Localizacao {
     // Linhas e colunas.
