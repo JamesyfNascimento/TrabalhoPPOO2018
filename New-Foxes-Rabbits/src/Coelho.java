@@ -182,7 +182,7 @@ public class Coelho extends Animal
     }
     
     /**
-    * Confira o número máximo de nascimentosd
+    * Configura o número máximo de nascimentosd
     * @param novaMaxNascimento
     */
     public static void setMaxNascimento(int novaMaxNascimento)
