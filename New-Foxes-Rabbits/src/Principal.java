@@ -1,5 +1,3 @@
-
-import java.util.Random;
 /**
  * Class principal - main
  * @author Anderson, Isabela, James
