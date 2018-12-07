@@ -7,18 +7,18 @@ import java.util.Iterator;
 */
 public class Cacador implements Personagem
 {
-    // O campo do caçador.
+    // O campo do cacador.
     private final Campo campo;
     // A posicao do caçador no campo.
     private Localizacao localizacao;
-    // Se o caçador esta vivo ou nao.
+    // Se o cacador esta vivo ou nao.
     private boolean ehVivo;
     
     /**
       * Construtor que recebe os parametros do campo do cacador e a sua 
       * localizacao dentro do campo.
       * @param campo O campo atualmente ocupado.
-      * @param novaLocalizacao A localização dentro do campo.
+      * @param novaLocalizacao A localizacao dentro do campo.
      */
     public Cacador(Campo campo, Localizacao novaLocalizacao)
     {
