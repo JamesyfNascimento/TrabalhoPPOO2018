@@ -8,7 +8,7 @@ import java.util.Iterator;
 public class Cacador implements Personagem
 {
     // O campo do caçador.
-    private Campo campo;
+    private final Campo campo;
     // A posicao do caçador no campo.
     private Localizacao localizacao;
     // Se o caçador esta vivo ou nao.
@@ -26,13 +26,8 @@ public class Cacador implements Personagem
         setLocalizacao(novaLocalizacao);
         ehVivo = true;
     }
-
-<<<<<<< HEAD
    
     @Override
-=======
-    Falta
->>>>>>> cb61cc0a60c1abd283d9c5e71fd7a3644a0a4a93
     public void act(List<Personagem> novosCacadores)
     {
     	// Mova-se em direcao a uma fonte de comida, se encontrada.
@@ -102,16 +97,12 @@ public class Cacador implements Personagem
     {
         return localizacao;
     }
-    
-<<<<<<< HEAD
-    
-    @Override
-=======
+
     /**
       *Coloque o caçador no novo local no campo dado.
       * @param novaLocalizacao A nova localização do caçador.
      */
->>>>>>> cb61cc0a60c1abd283d9c5e71fd7a3644a0a4a93
+    @Override
     public void setLocalizacao(Localizacao novaLocalizacao)
     {
         if(localizacao != null) {
