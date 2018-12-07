@@ -1,5 +1,9 @@
 import java.util.List;
-
+/**
+ * Clase para criar a grama do ambiente do simulador, ela serve de alimentacao
+ * para os coelhos
+ * @author Anderson, Isabela, James
+ */
 public class Grama extends Planta {
   // Caracteristicas da grama.
 
