@@ -6,7 +6,7 @@ import java.util.List;
 
 public class Coelho extends Animal
 {
-    // Características comuns aos coelhos(class variables).
+    // Caracteristicas comuns aos coelhos(class variables).
     // A idade que um coelho pode começar a procriar.
     private static int IDADE_REPRODUCAO = 5;
     // A idade máxima de um coelho.
@@ -19,8 +19,8 @@ public class Coelho extends Animal
     private static final int VALOR_ALIMENTO_GRAMA = 6;
     
     /**
-     * Construtor de criação do coelho, que recebe se ele terá idade aleatória
-     * ou será um recém nascido e sua localizaõ no campo.
+     * Construtor de criacao do coelho, que recebe se ele tera idade aleatoria
+     * ou será um recem nascido e sua localizacao no campo.
      * @param idadeAleatoria valor booleano
      * @param campo - tipo da Classe Campo
      * @param localizacao - tipo da Classe localização
@@ -35,7 +35,7 @@ public class Coelho extends Animal
     }
       
     /**
-     * Configuração das ações do coelho, coelhos reproduzem, comem grama ou
+     * Configuração das acoes do coelho, coelhos reproduzem, comem grama ou
      * podem virar presa
      * @param novosCoelhos 
      */
@@ -48,28 +48,28 @@ public class Coelho extends Animal
             // Se move para procurar comida
             Localizacao novaLocalizacao = procuraComida();
             if(novaLocalizacao == null) { 
-                // Quando não encontra comida, procura uma nova localização
+                // Quando nao encontra comida, procura uma nova localizacao
                 novaLocalizacao = getCampo().LocalizacaoAdjLivre(getLocalizacao());
             }
-            // Verifica se é possível se mover.
+            // Verifica se e possivel se mover.
             if(novaLocalizacao != null) {
                 setLocalizacao(novaLocalizacao);
             }
             else {
-                // Superpopulaçao de coelhos.
+                // Superpopulacao de coelhos.
                 matar();
             }
         }
     }
     /**
-     * Reprodução dos coelhos, coelhos recém-nascidos recebem idade igual a zero
+     * Reprodução dos coelhos, coelhos recem-nascidos recebem idade igual a zero
      * e são colocados dentro do campo em localições adjacentes de onde nasceram
      * @param novosCoelhos 
      */
     
     private void darHaLuz(List<Personagem> novosCoelhos)
     {
-        // Novos coelhos nascem em localizações adjacentes.
+        // Novos coelhos nascem em localizacoes adjacentes.
         Campo campo = getCampo();
         List<Localizacao> livre = campo.getLocalizacoesAdjLivres(getLocalizacao());
         int births = procriar();
@@ -80,10 +80,9 @@ public class Coelho extends Animal
         }
     }
     /**
-     * Procura por localizações vazias onde há grama.
+     * Procura por localizacoes vazias onde ha grama.
      * @return 
      */
-   
     private Localizacao procuraComida()
     {
         Campo campo = getCampo();
@@ -105,7 +104,7 @@ public class Coelho extends Animal
     }
     
     /**
-     * Determina se o coelho pode procriar ou não
+     * Determina se o coelho pode procriar ou nao
      * @return 
      */
     @Override
@@ -115,8 +114,8 @@ public class Coelho extends Animal
     }
     
     /**
-     * Retorna se o coelho está em idade de procriação
-     * @return IDADE_REPRODUÇÃO
+     * Retorna se o coelho está em idade de procriacao
+     * @return IDADE_REPRODUCAO
      */
     protected int getIdadeReproducao()
     {
@@ -144,7 +143,7 @@ public class Coelho extends Animal
     }
     
     /**
-     * Retorna o maior número de nascimentos possível
+     * Retorna o maior numero de nascimentos possivel
      * @return MAX_NASCIMENTO
      */
     @Override
@@ -154,7 +153,7 @@ public class Coelho extends Animal
     }
     
     /**
-     * Configura a idade de reprodução de um coelho
+     * Configura a idade de reproducao de um coelho
      * @param novaIdadeReproducao 
      */
     
@@ -164,7 +163,7 @@ public class Coelho extends Animal
     }
     
     /**
-     * Configura a idade máxima de um coelho
+     * Configura a idade maxima de um coelho
      * @param novaIdade
      */
     public static void setIdadeMaxima(int novaIdade)
@@ -173,7 +172,7 @@ public class Coelho extends Animal
     }
     
     /**
-     * Configura a probabilidade de reprodução do coelho
+     * Configura a probabilidade de reproducao do coelho
      * @param novaProbReproucao
      */
     public static void serProbReproducao(double novaProbReproucao)
@@ -182,7 +181,7 @@ public class Coelho extends Animal
     }
     
     /**
-    * Configura o número máximo de nascimentosd
+    * Confira o numero maximo de nascimentos
     * @param novaMaxNascimento
     */
     public static void setMaxNascimento(int novaMaxNascimento)
