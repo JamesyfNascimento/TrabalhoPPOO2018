@@ -9,7 +9,7 @@ public class Contador
     private int count;
 
     /**
-     * Construtor padrão que recebe uma string contendo o nome do "tipo" que 
+     * Construtor padrao que recebe uma string contendo o nome do "tipo" que 
      * será contado
      * @param name 
      */
