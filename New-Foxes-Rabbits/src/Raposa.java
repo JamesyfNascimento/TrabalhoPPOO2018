@@ -19,6 +19,12 @@ public class Raposa extends Animal {
     // Número de passo até poder comer de novo
     private static final int NIVEL_COMIDA = 9;
 
+    /**
+     * Criação de uma raposa com idade aleatória ou recém-nascida
+     * @param idadeAleatoria
+     * @param campo
+     * @param localizacao 
+     */
     public Raposa(boolean idadeAleatoria, Campo campo, Localizacao localizacao) {
         super(campo, localizacao);
         if (idadeAleatoria) {
