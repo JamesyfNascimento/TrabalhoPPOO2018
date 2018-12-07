@@ -16,7 +16,7 @@ public abstract class Animal implements Personagem {
     private int idade;
     // O nivel alimentar de um animal, que e aumentado pela ingestao.
     private int nivelComida;
-    // Um gerador de numeros aleatorios compartilhados para controlar a reprodução.
+    // Um gerador de numeros aleatorios compartilhados para controlar a reproducao.
     private static final Random rand = Randomico.getRandom();
 	
     /**
@@ -33,7 +33,7 @@ public abstract class Animal implements Personagem {
 
     @Override
     /**
-     * Método para determinar a ação do personagem
+     * Método para determinar a acao do personagem
      */
     public abstract void act(List<Personagem> novosAnimais);
 
@@ -59,7 +59,7 @@ public abstract class Animal implements Personagem {
     }
 
     /**
-     * Incrementa a idade do animal e caso este atinja a idade maxima é morto.
+     * Incrementa a idade do animal e caso este atinja a idade maxima e morto.
      */
     protected void envelhecer() {
         setIdade(getIdade() + 1);
