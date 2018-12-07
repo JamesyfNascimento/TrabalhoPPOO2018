@@ -1,7 +1,8 @@
 import java.util.List;
 import java.util.Iterator;
 
-/* Uma classe que representa as características compartilhadas dos caçadores.
+/**
+ * Uma classe que representa as características compartilhadas dos caçadores.
  * Um modelo simples de um caçador.
  * Caçadores se movem e disparam.
 */
