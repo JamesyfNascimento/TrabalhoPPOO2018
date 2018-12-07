@@ -5,7 +5,8 @@ import javax.swing.JPanel;
 import javax.swing.JTextArea;
 
 /**
- * Classe que mostra as informacẽos do esta acontecendo no simulador.
+ * Classe que mostra as informacẽos do esta acontecendo no simulador
+ * @author Anderson, Isabela, James
  */
 public class HistoricoTela extends JPanel
 {
@@ -41,17 +42,20 @@ public class HistoricoTela extends JPanel
 	public void historico()
 	{
             try {
-                StringBuffer buffer = new StringBuffer();
+                StringBuilder buffer = new StringBuilder();
                 String nStep = new String();
 
                 nStep =("Passo: " + step + "  ");
-                for(Color color : stats.keySet()){
-                    Contador info = stats.get(color);
+                stats.keySet().stream().map((color) -> stats.get(color)).map((Contador info) -> {
                     buffer.append(info.getName());	//mostra informacao
+                    return info;
+                }).map((info) -> {
                     buffer.append(": ");
                     buffer.append(info.getCount());
+                    return info;
+                }).forEachOrdered((_item) -> {
                     buffer.append(' ');
-                }
+                });
                 
                 if (!(nStep.equals("Step: " + -1 + "  "))){
                     textArea.append(nStep + buffer.toString() + "\r\n");                    
