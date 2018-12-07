@@ -1,14 +1,13 @@
-
 import java.util.List;
 
 /**
- * Interface para criar novos agentes que não são animais no campo no campo
+ * Interface para criar novos agentes que nao sao animais no campo no campo
  * @author Anderson, Isabela, James
  */
 public interface Personagem 
 {
         /**
-         * Ações do personagem
+         * Acoes do personagem
          * @param newActors 
          */
 	void act(List<Personagem> newActors);
@@ -20,7 +19,7 @@ public interface Personagem
 	boolean ehVivo();
    
         /**
-         * Atribuir localização
+         * Atribuir localizacao
          * @param newLocation 
          */
 	void setLocalizacao(Localizacao newLocation);
