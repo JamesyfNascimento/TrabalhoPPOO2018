@@ -8,12 +8,15 @@ import java.util.HashMap;
 import javax.swing.text.DefaultCaret;
 
 
-
+/**
+ * Configurações gráficas da tela
+ * @author Anderson, Isabela, James
+ */
 public class SimuladorTela extends JFrame {
-    // Colors used for empty locations.
+    // Cores para localizações vazias
     private static final Color COR_VAZIA = Color.white;
 
-    // Color used for objects that have no defined color.
+    // Cor para objetos sem cor previamente definida.
     private static final Color COR_DESCONHECIDA = Color.gray;
 
     private final String PASSO = "Passo: ";
@@ -25,9 +28,9 @@ public class SimuladorTela extends JFrame {
     private HistoricoTela historicoTela;
 
 
-    // A map for storing colors for participants in the simulation
+    // Uma mapa para armazenar as cores do participantes da simulação
     private Map<Class, Color> cores;
-    // A statistics object computing and storing simulation information
+    // Informações de status dos participantes
     private StatusCampo statusCampo;
 
     /*
@@ -36,12 +39,17 @@ public class SimuladorTela extends JFrame {
      * alinhamento)
      */
     
-    
-    private ThreadRunner threadRunner;
-
-    
+    /**
+     * Criação da ThreadRunner
+     */
+    private ThreadRunner threadRunner;    
    
     
+    /**
+     * Criação dos componentes da tela
+     * @param altura
+     * @param largura 
+     */
     public SimuladorTela(int altura, int largura) {
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); 
         threadRunner = new ThreadRunner();
@@ -58,25 +66,30 @@ public class SimuladorTela extends JFrame {
 
         campoTela = new CampoTela(altura, largura);
                
-        montarTelaHistorico(altura, largura);
+        try {
+            montarTelaHistorico(altura, largura);
+        } catch (Exception e) {
+        }
+ 
 
         frame();
 
     }
     
+    /**
+     * Configurações do frame
+     */
     public void frame(){
         JPanel frame = new JPanel();
         frame.setLayout(new BorderLayout());
         frame.setBorder(new EmptyBorder(10, 10, 10, 10));
-        this.add(frame);
-        
+        this.add(frame);        
         
         JPanel painel = new JPanel();
         painel.setLayout(new GridLayout(2, 2));
         painel.setBorder(new EmptyBorder(5, 5, 5, 5));
         frame.add(painel, BorderLayout.CENTER);
         
-        // maak field panel (bovenste laag) aan, en border van field panel.
         JPanel campo = new JPanel();
         campo.setLayout(new BorderLayout());
         campo.add(passoLabel, BorderLayout.NORTH);
@@ -85,25 +98,22 @@ public class SimuladorTela extends JFrame {
         painel.add(campo); // field panel toevoegen aan view panel.
         
                 
-        // textArea panel
+        // Painel textArea
         JTextArea textArea = new JTextArea(20, 20);
         historicoTela.setTextArea(textArea);
         textArea.setEditable(false);
         
-        // scrollPane voor textArea
         JScrollPane scrollPane = new JScrollPane(textArea);		
         DefaultCaret caret = (DefaultCaret) textArea.getCaret();
         caret.setUpdatePolicy(DefaultCaret.ALWAYS_UPDATE);		
         scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
         painel.add(scrollPane);
 	
-        
         JPanel containerMenuBotao = new JPanel();
         containerMenuBotao.setLayout(new GridLayout(20, 0)); 
         containerMenuBotao.setBorder(new EmptyBorder(20, 10, 20, 10));
         
         menuBotao(containerMenuBotao);
-        
         
         frame.add(containerMenuBotao, BorderLayout.WEST); // toolbar panel toevoegen aan de main frame
 
@@ -117,61 +127,75 @@ public class SimuladorTela extends JFrame {
         setExtendedState(Frame.MAXIMIZED_BOTH);
     }
     
-    
+    /**
+     * Criação do menu de botões com ações no campo
+     * @param containerMenuBotao 
+     */
     private void menuBotao(JPanel containerMenuBotao){
-        // labels en knoppen
-        // step 1 knop
+
         JButton passo1 = new JButton("1 Passo");
         passo1.addActionListener((ActionEvent e) -> {
             threadRunner.startRun(1);
         });
-        containerMenuBotao.add(passo1); // toevoegen aan toolbar panel
+        containerMenuBotao.add(passo1); 
 
-        // step 100 knop
         JButton passo100 = new JButton("100 Passos");
         passo100.addActionListener((ActionEvent e) -> {
             threadRunner.startRun(100);
         });
         containerMenuBotao.add(passo100);
 
-        // start knop
         JButton rodar = new JButton("Rodar");
         rodar.addActionListener((ActionEvent e) -> {
             threadRunner.startRun(0);
         });
-        containerMenuBotao.add(rodar); // toevoegen aan toolbar panel
+        containerMenuBotao.add(rodar); 
 
-        // stop knop
         JButton parar = new JButton("Parar");
         parar.addActionListener((ActionEvent e) -> {
             threadRunner.stop();
         });
-        containerMenuBotao.add(parar); // toevoegen aan toolbar panel
+        containerMenuBotao.add(parar); 
 
-        // reset knop
         JButton padrao = new JButton("Padrão");
         padrao.addActionListener((ActionEvent e) -> {
             historicoTela.setStep(0);
             Principal.getSimulador().resetar();
         });
-        containerMenuBotao.add(padrao); // toevoegen aan toolbar panel
+        containerMenuBotao.add(padrao); 
     }
     
-    
-    
+    /**
+     * Montagem da tela Com informações do histórico
+     * @param height
+     * @param width 
+     */
     private void montarTelaHistorico(int height, int width) {
         historicoTela = new HistoricoTela(height, width);
         historicoTela.setSize(height, width);
         historicoTela.stats(getDetalhePopulacao());
-        historicoTela.historico();
+        try {
+             historicoTela.historico();
+        } catch (Exception e) {
+        }
+       
     }
 
-    
+    /**
+     * Atribui a cor
+     * @param animalClass
+     * @param color 
+     */
     public void setColor(Class animalClass, Color color) {
         cores.put(animalClass, color);
     }
 
     
+    /**
+     * Retorna a cor
+     * @param animalClass
+     * @return 
+     */
     private Color getColor(Class animalClass) {
         Color col = cores.get(animalClass);
         if (col == null) {
@@ -183,6 +207,11 @@ public class SimuladorTela extends JFrame {
     }
 
     
+    /**
+     * Mostra o status de cada passo no campo
+     * @param step
+     * @param campo 
+     */
     public void mostrarStatus(int step, Campo campo) {
         if (!isVisible()) {
             setVisible(true);
@@ -216,6 +245,11 @@ public class SimuladorTela extends JFrame {
     }
 
     
+    /**
+     * Se o camo é viável
+     * @param campo
+     * @return 
+     */
     public boolean isViable(Campo campo) {
         return statusCampo.isViable(campo);
     }
@@ -232,6 +266,10 @@ public class SimuladorTela extends JFrame {
     }
     
     
+    /**
+     * Retorna a threadRunner
+     * @return threadRunner
+     */
     public ThreadRunner getThreadRunner() {
             return threadRunner;
     }
