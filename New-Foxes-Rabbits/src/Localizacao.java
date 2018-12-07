@@ -1,5 +1,5 @@
 /**
- * Classe para determinar localização
+ * Classe para determinar localizacao
  * @author Anderson, Isabela, James
  */
 public class Localizacao {
@@ -8,7 +8,7 @@ public class Localizacao {
     private final int col;
    
     /**
-     * Criação de uma localização que recebe a linha e coluna
+     * Criacao de uma localizacao que recebe a linha e coluna
      * @param row
      * @param col 
      */
@@ -19,7 +19,7 @@ public class Localizacao {
     }
     
    /**
-    * Verifica se a localização adicionada é a igual 
+    * Verifica se a localizacao adicionada e a igual 
     * @param obj
     * @return valor booleano
     */
