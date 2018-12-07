@@ -158,7 +158,7 @@ public class Raposa extends Animal {
     }
 
     /**
-     * Configura a idade de reprodução de um coelho
+     * Configura a idade de reprodução de uma raposa
      * @param novaIdadeReproducao 
      */
     public static void setIdadeReproducao(int novaIdade) {
@@ -166,7 +166,7 @@ public class Raposa extends Animal {
     }
 
     /**
-     * Configura a idade máxima de um coelho
+     * Configura a idade máxima de uma raposa
      * @param novaIdade
      */
     public static void setIdadeMaxima(int novaIdade) {
@@ -182,7 +182,7 @@ public class Raposa extends Animal {
     }
 
     /**
-    * Configura o número máximo de nascimentosd
+    * Configura o número máximo de nascimentos
     * @param novaMaxNascimento
     */
     public static void setMaxNascimento(int maxNascimento) {
