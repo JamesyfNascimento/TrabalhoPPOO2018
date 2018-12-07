@@ -9,11 +9,11 @@ import javax.swing.text.DefaultCaret;
 
 
 /**
- * Configurações gráficas da tela
+ * Configuracoes graficas da tela
  * @author Anderson, Isabela, James
  */
 public class SimuladorTela extends JFrame {
-    // Cores para localizações vazias
+    // Cores para localizacoes vazias
     private static final Color COR_VAZIA = Color.white;
 
     // Cor para objetos sem cor previamente definida.
@@ -28,25 +28,25 @@ public class SimuladorTela extends JFrame {
     private HistoricoTela historicoTela;
 
 
-    // Uma mapa para armazenar as cores do participantes da simulação
+    // Uma mapa para armazenar as cores do participantes da simulacao
     private Map<Class, Color> cores;
-    // Informações de status dos participantes
+    // Informacoes de status dos participantes
     private StatusCampo statusCampo;
 
     /*
-     * Mecanismo auxiliar para a GridBagLayout. Restrições adicionados aos
+     * Mecanismo auxiliar para a GridBagLayout. Restricoes adicionados aos
      * componetes antes de serem adicionados ao layout. (posicionamento, largura,
      * alinhamento)
      */
     
     /**
-     * Criação da ThreadRunner
+     * Criacao da ThreadRunner
      */
     private ThreadRunner threadRunner;    
    
     
     /**
-     * Criação dos componentes da tela
+     * Criacao dos componentes da tela
      * @param altura
      * @param largura 
      */
@@ -77,7 +77,7 @@ public class SimuladorTela extends JFrame {
     }
     
     /**
-     * Configurações do frame
+     * Configuracoes do frame
      */
     public void frame(){
         JPanel frame = new JPanel();
@@ -128,7 +128,7 @@ public class SimuladorTela extends JFrame {
     }
     
     /**
-     * Criação do menu de botões com ações no campo
+     * Criacao do menu de botoes com acoes no campo
      * @param containerMenuBotao 
      */
     private void menuBotao(JPanel containerMenuBotao){
@@ -157,7 +157,7 @@ public class SimuladorTela extends JFrame {
         });
         containerMenuBotao.add(parar); 
 
-        JButton padrao = new JButton("Padrão");
+        JButton padrao = new JButton("Padrao");
         padrao.addActionListener((ActionEvent e) -> {
             historicoTela.setStep(0);
             Principal.getSimulador().resetar();
@@ -166,7 +166,7 @@ public class SimuladorTela extends JFrame {
     }
     
     /**
-     * Montagem da tela Com informações do histórico
+     * Montagem da tela Com informacoes do historico
      * @param height
      * @param width 
      */
@@ -246,7 +246,7 @@ public class SimuladorTela extends JFrame {
 
     
     /**
-     * Se o camo é viável
+     * Se o camo e viavel
      * @param campo
      * @return 
      */
