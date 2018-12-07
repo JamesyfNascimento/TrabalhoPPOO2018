@@ -1,15 +1,16 @@
-
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Image;
-
 import javax.swing.JPanel;
 
-
+/**
+ * Classe com as configurações do campo 
+ * @author Anderson, Isabela, James
+ */
 public class CampoTela extends JPanel {
 	
-	private static final long serialVersionUID = 4654472673504364932L;
+	//private static final long serialVersionUID = 4654472673504364932L;
 
 	private final int GRID_FATOR_ESCALA = 6;
 
@@ -35,7 +36,7 @@ public class CampoTela extends JPanel {
 	}
 
 	public void prepararPintura() {
-            System.out.println("haha");
+            System.out.print("");
 		if (!dimencao.equals(getSize())) { // if the size has changed...
                     dimencao = getSize();
                     imageCampo = createImage(dimencao.width, dimencao.height);
