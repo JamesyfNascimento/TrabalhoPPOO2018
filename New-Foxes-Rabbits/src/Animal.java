@@ -117,6 +117,7 @@ public abstract class Animal implements Personagem {
 
     /**
      * Alguns animais podem pocriar outros não
+     * @return true or false
     */
     protected abstract boolean podeProcriar();
 
