@@ -3,24 +3,24 @@ import java.util.Iterator;
 
 
 /**
- * Classe com as caracerísticas e ações das raposas
+ * Classe com as caracerísticas e acões das raposas
  * @author Anderson, Isabela, James
  */
 public class Raposa extends Animal {
      // Características comuns às raposas.
-    // A idade que uma raposa pode começar a procriar.
+    // A idade que uma raposa pode comecar a procriar.
     private static int IDADE_REPRODUCAO = 15;
-    // Idade máxima que uma raposa pode viver.
+    // Idade maxima que uma raposa pode viver.
     private static int IDADE_MAXIMA = 150;
     // Probabilidade da raposa procriar
     private static double PROBABILIDADE_REPRODUCAO = 0.08;
-     // Máximo de filhores
+     // Maximo de filhores
     private static int MAX_NASCIMENTO = 4;
-    // Número de passo até poder comer de novo
+    // Numero de passo ate poder comer de novo
     private static final int NIVEL_COMIDA = 9;
 
     /**
-     * Criação de uma raposa com idade aleatória ou recém-nascida
+     * Criacao de uma raposa com idade aleatoria ou recem-nascida
      * @param idadeAleatoria
      * @param campo
      * @param localizacao 
@@ -36,7 +36,7 @@ public class Raposa extends Animal {
         }
     }
     /**
-     * Ações de uma raposa (comer, se mover)
+     * Acões de uma raposa (comer, se mover)
      * @param novasRaposas 
      */
     @Override
@@ -48,7 +48,7 @@ public class Raposa extends Animal {
             // Se move para procurar comida
             Localizacao novaLocalizacao = procuraComida();
             if (novaLocalizacao == null) {
-                // Se não encontrar comida, tenta achar uma nova localização 
+                // Se nao encontrar comida, tenta achar uma nova localizacao 
                 // vazia
                 novaLocalizacao = getCampo().LocalizacaoAdjLivre(getLocalizacao());
             }
@@ -56,14 +56,14 @@ public class Raposa extends Animal {
             if (novaLocalizacao != null) {
                 setLocalizacao(novaLocalizacao);
             } else {
-                // Superpopulação.
+                // Superpopulacao.
                 matar();
             }
         }
     }
 
     /**
-     * Retorna a idade máxima
+     * Retorna a idade maxima
      * @return IDADE_MAXIMA
      */
     @Override
@@ -83,7 +83,7 @@ public class Raposa extends Animal {
 
     /**
      * Procurar comida
-     * @return null, ou local onde há comida
+     * @return null, ou local onde ha comida
      */
     private Localizacao procuraComida() {
         Campo campo = getCampo();
@@ -105,8 +105,8 @@ public class Raposa extends Animal {
     }
 
     /**
-     * Reprodução das raposas, raposas recém-nascidas recebem idade igual a zero
-     * e são colocados dentro do campo em localições adjacentes de onde nasceram
+     * Reproducao das raposas, raposas recem-nascidas recebem idade igual a zero
+     * e sao colocados dentro do campo em localicões adjacentes de onde nasceram
      * @param novosCoelhos 
      */
     private void darHaLuz(List<Personagem> novasRaposas) {
@@ -123,7 +123,7 @@ public class Raposa extends Animal {
     }
 
     /**
-     * Determina se a raposa pode procriar ou não
+     * Determina se a raposa pode procriar ou nao
      * @return 
      */
     @Override
@@ -132,7 +132,7 @@ public class Raposa extends Animal {
     }
 
     /**
-     * Retorna se a raposa está em idade de procriação
+     * Retorna se a raposa esta em idade de procriacao
      * @return IDADE_REPRODUÇÃO
      */
     protected int getIdadeReproducao() {
@@ -140,7 +140,7 @@ public class Raposa extends Animal {
     }
 
     /**
-     * Retorna o maior número de nascimentos possível
+     * Retorna o maior numero de nascimentos possível
      * @return MAX_NASCIMENTO
      */
     @Override
@@ -158,7 +158,7 @@ public class Raposa extends Animal {
     }
 
     /**
-     * Configura a idade de reprodução de um coelho
+     * Configura a idade de reproducao de um coelho
      * @param novaIdade 
      */
     public static void setIdadeReproducao(int novaIdade) {
@@ -166,7 +166,7 @@ public class Raposa extends Animal {
     }
 
     /**
-     * Configura a idade máxima de um coelho
+     * Configura a idade maxima de um coelho
      * @param novaIdade
      */
     public static void setIdadeMaxima(int novaIdade) {
@@ -174,7 +174,7 @@ public class Raposa extends Animal {
     }
 
     /**
-     * Atriubir nova probalidade de reprodução
+     * Atriubir nova probalidade de reproducao
      * @param prob 
      */
     public static void setProbabilidadeReproducao(double prob) {
@@ -182,7 +182,7 @@ public class Raposa extends Animal {
     }
 
     /**
-    * Configura o número máximo de nascimentosd
+    * Configura o numero maximo de nascimentos
     * @param  maxNascimento
     */
     public static void setMaxNascimento(int maxNascimento) {
