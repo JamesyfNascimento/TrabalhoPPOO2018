@@ -4,42 +4,45 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.awt.Color;
 
-
+/**
+ * Classe para definir as configurações do simulador
+ * @author Anderson, Isabela, James
+ */
 public class Simulador
 {
-    // Constants representing configuration information for the simulation.
-    // The default width for the grid.
+    // Variáveis que definem as configurações do simulador
+    // Valor default para o tamanho do grid
     private static final int LARGURA_PADRAO = 100;
-    // The default depth of the grid.
     private static final int ALTURA_PADRAO = 60;
-    // The probability that a bear will be created in any given grid position.    
+    // Probabilidades de reprodução dos personagens que fazem parte da simulação 
     private static double PROBABILIDADE_REPRODUCAO_URSO = 0.01;
-    // The probability that a fox will be created in any given grid position.
     private static double PROBABILIDADE_REPRODUCAO_RAPOSA = 0.02;
-    // The probability that a rabbit will be created in any given grid position.
     private static double PROBABILIDADE_REPRODUCAO_COELHO = 0.08;    
-    // The probability that a hunter will be created in any given grid position.
     private static double PROBABILIDADE_REPRODUCAO_CACADOR = 0.002;
-    // The probability that grass will be created in any given grid position.
     private static double PROBABILIDADE_REPRODUCAO_GRAMA = 1;
     
-    // List of Actors in the field.
+    // Lista de agentes no campo
     private List<Personagem> personagens;
-    // The current state of the field.
     private Campo campo;
-    // The current step of the simulation.
+    // Passo autual da simulação
     private int passo = 0;
-    // A graphical view of the simulation.
+    // Visualização gráfica do simulador
     private SimuladorTela tela;
 
     
-    
+    /**
+     * Criação do simulador padrão
+     */
     public Simulador()
     {
         this(ALTURA_PADRAO, LARGURA_PADRAO);
     }
     
-    
+    /**
+     * Criação do simulador com dimensões definidas através dos parâmetros
+     * @param altura
+     * @param largura 
+     */
     public Simulador(int altura, int largura)
     {
         if(largura <= 0 || altura <= 0) {
@@ -52,23 +55,23 @@ public class Simulador
         personagens = new ArrayList<Personagem>();
         campo = new Campo(altura, largura);
 
-        // Create a view of the state of each location in the field.
+        // Cria a visualização de cada personagem atribuindo uma cor diferente.
         tela = new SimuladorTela(altura, largura);
         tela.setColor(Coelho.class, Color.ORANGE);
         tela.setColor(Raposa.class, Color.BLUE);
         tela.setColor(Urso.class, Color.MAGENTA);
         tela.setColor(Cacador.class, Color.BLACK);
         tela.setColor(Grama.class, Color.GREEN);
-        // Setup a valid starting point.
         resetar();
     }
     
-    
+    /**
+     * Um passo de execução
+     */
     public void umPasso()
     {
         passo++;
 
-        // Provide space for newborn actors.
         List<Personagem> novosPersonagens = new ArrayList<Personagem>();
         
         // Let all actors act.
@@ -91,13 +94,15 @@ public class Simulador
             }
         }
 				    
-        // Add the newly born foxes and rabbits to the main lists.
+        // adiciona personagens recém nascidos
         personagens.addAll(novosPersonagens);
 
         tela.mostrarStatus(passo, campo);
     }
     
-    
+    /**
+     * Volta ao passo 0
+     */
     public void resetar()
     {
         tela.getThreadRunner().stop();			
@@ -110,25 +115,37 @@ public class Simulador
     }
     
     
+    /**
+     * Retorna a tela do simulador
+     * @return tela
+     */
     public SimuladorTela getSimuladorTela()
     {
     	return tela;
     }
     
-    
+    /**
+     * Retorna o campo
+     * @return campo
+     */
     public Campo getCampo()
     {
     	return campo;
     }
     
-    
+    /**
+     * Retorna o passo atual
+     * @return passo
+     */
     public int getPasso()
     {
     	return passo;
     }
     
     
-   
+   /**
+    * Cria população
+    */
     private void populacao()
     {
         Random rand = Randomico.getRandom();
@@ -160,40 +177,55 @@ public class Simulador
                     Grama grass = new Grama(true, campo, location);
                     personagens.add(grass);
                 }
-                // else leave the location empty.
+                
             }
         }
     }
     
-    
+    /**
+     * Atribui nova probabilidade de reprodução
+     * @param probReproducaoUrso 
+     */
     public static void setProbReproducaoUrso(double probReproducaoUrso)
     {
     	if (probReproducaoUrso >= 0)
     		Simulador.PROBABILIDADE_REPRODUCAO_URSO = probReproducaoUrso;
     }
     
-    
+    /**
+     * Atribui nova probabilidade de reprodução
+     * @param probReproducaoRaposa 
+     */
     public static void setProbReproducaoRaposa(double probReproducaoRaposa)
     {
     	if (probReproducaoRaposa >= 0)
     		Simulador.PROBABILIDADE_REPRODUCAO_RAPOSA = probReproducaoRaposa;
     }
     
-    
+    /**
+     * Atribui nova probabilidade de reprodução
+     * @param probReproducaoRaposa 
+     */
     public static void setProbReproducaoCoelho(double probReproducaoRaposa)
     {
     	if (probReproducaoRaposa >= 0)
     		Simulador.PROBABILIDADE_REPRODUCAO_COELHO = probReproducaoRaposa;
     }
     
-    
+    /**
+     * Atribui nova probabilidade de reprodução
+     * @param probReproducaoCacador 
+     */
     public static void setProbReproducaoCacador(double probReproducaoCacador)
     {
     	if (probReproducaoCacador >= 0)
     		Simulador.PROBABILIDADE_REPRODUCAO_CACADOR = probReproducaoCacador;
     }
     
-    
+    /**
+     * Atribui nova probabilidade de reprodução
+     * @param probReproducaoGrama 
+     */
     public static void setProbReproducaoGrama(double probReproducaoGrama)
     {
     	if (probReproducaoGrama >= 0)
