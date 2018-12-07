@@ -1,5 +1,5 @@
 /**
- * Class principal - main
+ * Classe principal - main
  * @author Anderson, Isabela, James
  */
 public class Principal {
